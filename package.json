@@ -1,0 +1,17 @@
+{
+  "name": "rpl-security",
+  "version": "1.0.0",
+  "description": "Aplikasi untuk Security",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "minify": "npx tailwindcss -i ./src/input.css -o ./src/output.css --minify"
+  },
+  "keywords": [],
+  "author": "Wijdan",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
+

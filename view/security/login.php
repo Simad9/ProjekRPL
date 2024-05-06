@@ -9,7 +9,7 @@
 <body class="flex flex-col gap-[10px] p-[30px] justify-center items-center h-screen">
   <!-- heading -->
   <div class="flex flex-col text-center justify-center items-center">
-    <img src="../../assets/img/Logo.png" alt="Logo">
+    <img src="../../assets/icon/Logo.png" alt="Logo">
     <h1 class="font-bold text-xl text-s-black">Selamat Datang</h1>
     <p class="font-meidum text-[13px] text-s-black">Silahkan masuk ke akun anda</p>
   </div>

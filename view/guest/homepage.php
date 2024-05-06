@@ -13,7 +13,7 @@
     <p class="font-semibold text-[15px] text-s-black">Laporan Barang yang ada : </p>
     <!-- Perulangan card -->
     <div class="flex gap-[10px] bg-ijo-400 w-full p-[10px] rounded-[8px] items-center">
-      <img src="../../assets/img/contoh.png" alt="Gambar Barang" class="object-cover w-[75px] h-[75px]">
+      <img src="../../assets/icon/contoh.png" alt="Gambar Barang" class="object-cover w-[75px] h-[75px]">
       <div class="w-full flex flex-col gap-[5px]">
         <h2 class="font-semibold text-[18px] text-s-black">Kunci Motor</h2>
         <div class="font-normal text-[13px] text-s-black">

@@ -10,10 +10,10 @@
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="homepage.php">
-      <img src="../../assets/img/guest-icon-arrow.png" alt="kembali">
+      <img src="../../assets/icon/guest-icon-arrow.png" alt="kembali">
     </a>
     <h1 class="font-semibold text-xl text-s-black text-center">Laporan Kehilangan</h1>
-    <img src="../../assets/img/guest-icon-arrow.png" alt="kembali" class="opacity-0">
+    <img src="../../assets/icon/guest-icon-arrow.png" alt="kembali" class="opacity-0">
   </div>
   <div class="h-[3px] w-full bg-s-black rounded"></div>
   <!-- END Header -->
@@ -22,7 +22,7 @@
   <p class="font-semibold text-[15px] text-s-black">Barang yang ditemukan : </p>
   <!-- Perulangan card -->
   <div class="flex gap-[10px] bg-ijo-400 w-full p-[10px] rounded-[8px] items-center">
-    <img src="../../assets/img/contoh.png" alt="Gambar Barang" class="object-cover w-[75px] h-[75px]">
+    <img src="../../assets/icon/contoh.png" alt="Gambar Barang" class="object-cover w-[75px] h-[75px]">
     <div class="w-full flex flex-col gap-[5px]">
       <h2 class="font-semibold text-[18px] text-s-black">Kunci Motor</h2>
       <div class="font-normal text-[13px] text-s-black">
@@ -52,7 +52,7 @@
     <!-- Bukti Kepemilikan -->
     <div class="flex flex-col gap-1 relative">
       <label for="kepemilikan" class="font-semibold text-[15px] text-s-black">Bukti Kepemilikan</label>
-      <img src="../../assets/img/guest-icon-arrow.png" alt="arrow" class="-rotate-90 absolute right-3 top-1/2">
+      <img src="../../assets/icon/guest-icon-arrow.png" alt="arrow" class="-rotate-90 absolute right-3 top-1/2">
       <select name="kepemilikan" id="kepemilikan" class="px-[15px] py-[10px] rounded-[10px] text-s-black border-[2px] border-s-black appearance-none">
         <option value="">Opsi Bukti Kepemilikan</option>
         <option value="STNK">STNK</option>
@@ -63,7 +63,7 @@
     <div class="flex flex-col gap-1">
       <label class="font-semibold text-[15px] text-s-black">Bukti Foto</label>
       <label for="foto" class="flex items-center gap-3">
-        <img src="../../assets/img/guest-icon-upload.png" id="foto-preview" class="object-cover w-[100px] h-[100px] border border-s-black rounded-[10px]" alt="Foto">
+        <img src="../../assets/icon/guest-icon-upload.png" id="foto-preview" class="object-cover w-[100px] h-[100px] border border-s-black rounded-[10px]" alt="Foto">
         <p class="font-normal text-[10px] text-s-black">kirim foto maksimal 2mb</p>
       </label>
       <input type="file" id="foto" required class="hidden">

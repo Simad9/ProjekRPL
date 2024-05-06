@@ -18,7 +18,7 @@
   <!-- Judul -->
   <section>
     <div class="flex flex-col justify-center items-center">
-      <img src="./assets/img/Logo.png" alt="Logo Aps">
+      <img src="./assets/icon/Logo.png" alt="Logo Aps">
       <p class="font-bold text-lg text-center">Untuk memulai, silahkan peran yang ingin Anda ambil</p>
     </div>
   </section>
@@ -28,7 +28,7 @@
   <section class="flex flex-col gap-[10px] w-full">
     <a href="view/security/login.php">
       <div class="bg-ijo-500 hover:bg-ijo-400 cursor-pointer rounded px-[25px] py-[8px] flex flex-col gap-1 justify-center items-center w-full">
-        <img src="./assets/img/icon-security.png" alt="Security">
+        <img src="./assets/icon/icon-security.png" alt="Security">
         <h1 class="font-bold text-xl text-s-white">SECURITY</h1>
         <div class="h-[3px] w-full bg-s-white rounded"></div>
         <p class="font-bold text-[15px] text-s-white text-center">Masuk sebagai Security, Anda adalah security di sini</p>
@@ -37,7 +37,7 @@
 
     <a href="view/guest/homepage.php">
       <div class="bg-ijo-500 hover:bg-ijo-400 cursor-pointer rounded px-[25px] py-[8px] flex flex-col gap-1 justify-center items-center w-full">
-        <img src="./assets/img/icon-guest.png" alt="Guest">
+        <img src="./assets/icon/icon-guest.png" alt="Guest">
         <h1 class="font-bold text-xl text-s-white">GUEST</h1>
         <div class="h-[3px] w-full bg-s-white rounded"></div>
         <p class="font-bold text-[15px] text-s-white text-center">Masuk sebagai Guest, Untuk melihat barang hilang</p>

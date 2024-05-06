@@ -12,7 +12,7 @@
   <main class="flex flex-col gap-[20px] h-screen justify-center items-center w-full">
     <section class="flex flex-col">
       <div class="flex flex-col justify-center items-center">
-        <img src="../../assets/img/guest-icon-sukses.png" alt="Sukses">
+        <img src="../../assets/icon/guest-icon-sukses.png" alt="Sukses">
         <p class="font-bold text-xl text-s-black">Laporan Terkirim!</p>
       </div>
       <p class="font-semibold text-[15px] text-s-black">Tunggu balasan dari kami!</p>

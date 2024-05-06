@@ -3,7 +3,7 @@
 
 <head>
   <?php include "../../tamplate/meta.php" ?>
-  <title>Document</title>
+  <title>Homepage | Security App</title>
 </head>
 
 <body class="flex flex-col gap-[10px] p-[30px] h-screen">
@@ -22,7 +22,7 @@
           <p>Deskripsi Barang</p>
         </div>
         <!-- Ngirim id -->
-        <a href="laporan_kehilangan.php?">
+        <a href="laporan_kehilangan.php">
           <div class="px-[15px] py-[5px] border-ijo-400 bg-s-white w-full rounded-[10px] hover:bg-slate-200 cursor-pointer">
             <p class="font-medium text-[13px] text-s-black text-center">Lapor</p>
           </div>

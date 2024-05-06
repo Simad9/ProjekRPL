@@ -9,6 +9,7 @@
 <body class="flex flex-col gap-[10px] p-[30px] h-screen">
   <h1 class="font-bold text-2xl text-s-black">SELAMAT DATANG</h1>
   <div class="h-[3px] w-full bg-s-black rounded"></div>
+
   <div class="flex flex-col gap-[5px] w-full h-screen">
     <p class="font-semibold text-[15px] text-s-black">Laporan Barang yang ada : </p>
     <!-- Perulangan card -->
@@ -29,7 +30,6 @@
         </a>
       </div>
     </div>
-
   </div>
 
 </body>

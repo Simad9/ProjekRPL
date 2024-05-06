@@ -15,8 +15,8 @@
     <h1 class="font-semibold text-xl text-s-black text-center">Laporan Kehilangan</h1>
     <img src="../../assets/icon/guest-icon-arrow.png" alt="kembali" class="opacity-0">
   </div>
-  <div class="h-[3px] w-full bg-s-black rounded"></div>
   <!-- END Header -->
+  <div class="h-[3px] w-full bg-s-black rounded"></div>
 
   <!-- Barang -->
   <p class="font-semibold text-[15px] text-s-black">Barang yang ditemukan : </p>
@@ -32,8 +32,8 @@
       </div>
     </div>
   </div>
-  <div class="h-[3px] w-full bg-s-black rounded"></div>
   <!-- END Barang -->
+  <div class="h-[3px] w-full bg-s-black rounded"></div>
 
   <!-- Bukti Kepemilkan -->
   <p class="font-semibold text-[15px] text-s-black">Bukti Kepemilikan : </p>

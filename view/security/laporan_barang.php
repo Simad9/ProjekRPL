@@ -6,7 +6,7 @@
   <title>Laporan Barang | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] w-full">
+<body class="flex flex-col gap-[10px] px-[30px] pt-[30px] pb-20 w-full relative">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="homepage.php">
@@ -69,7 +69,7 @@
   <!-- END Main -->
 
   <!-- Navbar -->
-  <nav class="flex px-[63px] py-[13px] justify-between items-center bg-ijo-500 w-full absolute bottom-0 left-0">
+  <nav class="flex px-[63px] py-[13px] justify-between items-center bg-ijo-500 w-full  bottom-0 left-0 fixed">
     <!-- Barang -->
     <a href="../security/laporan_barang.php">
       <div class="flex flex-col gap-0 justify-center items-center group cursor-pointer ">

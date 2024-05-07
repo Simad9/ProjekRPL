@@ -26,20 +26,16 @@
   <!-- Fitur Kami -->
   <div class="flex flex-col gap-[5px]">
     <p class="font-semibold text-[15px] text-s-black">Fitur Kami : </p>
-    <div class="flex justify-evenly w-full">
-      <a href="../security/laporan_barang.php">
-        <div class="flex flex-col justify-center items-center p-[10px] bg-ijo-400 hover:bg-ijo-500 rounded-[10px] w-[130px] cursor-pointer">
-          <img src="../../assets/icon/security-icon-barang.png" alt="Lapor Barang" class="w-[50px] h-[50px] fill-s-black">
-          <p class="font-semibold text-[15px] text-s-black">Laporan</p>
-          <p class="font-semibold text-[15px] text-s-black">Barang</p>
-        </div>
+    <div class="flex gap-[10px] justify-evenly">
+      <a href="../security/laporan_barang.php" class="flex flex-col justify-center items-center p-[10px] bg-ijo-400 hover:bg-ijo-500 rounded-[10px] w-full cursor-pointer">
+        <img src="../../assets/icon/security-icon-barang.png" alt="Lapor Barang" class="w-[50px] h-[50px] fill-s-black">
+        <p class="font-semibold text-[15px] text-s-black">Laporan</p>
+        <p class="font-semibold text-[15px] text-s-black">Barang</p>
       </a>
-      <a href="../security/pergantian_shift.php">
-        <div class="flex flex-col justify-center items-center p-[10px] bg-ijo-400 hover:bg-ijo-500 rounded-[10px] w-[130px] cursor-pointer">
-          <img src="../../assets/icon/security-icon-shift.png" alt="Lapor Barang" class="w-[50px] h-[50px] fill-s-black">
-          <p class="font-semibold text-[15px] text-s-black">Pergantian</p>
-          <p class="font-semibold text-[15px] text-s-black">Shift</p>
-        </div>
+      <a href="../security/pergantian_shift.php" class="flex flex-col justify-center items-center p-[10px] bg-ijo-400 hover:bg-ijo-500 rounded-[10px] w-full cursor-pointer">
+        <img src="../../assets/icon/security-icon-shift.png" alt="Lapor Barang" class="w-[50px] h-[50px] fill-s-black">
+        <p class="font-semibold text-[15px] text-s-black">Pergantian</p>
+        <p class="font-semibold text-[15px] text-s-black">Shift</p>
       </a>
     </div>
   </div>

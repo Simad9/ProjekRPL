@@ -1,12 +1,9 @@
-<?php
-$noHp = "+6282135322025";
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <?php include "../../tamplate/meta.php" ?>
-  <title>Laporan Mahasiswa | Security App</title>
+  <title>Detail Laporan | Security App</title>
 </head>
 
 <body class="flex flex-col gap-[10px] p-[30px] w-full">
@@ -45,10 +42,17 @@ $noHp = "+6282135322025";
           <p>No Hp : 08123456789</p>
         </div>
       </div>
+      <!-- Bukti -->
+      <div class="flex flex-col gap-[5px]">
+        <h1 class="font-semibold text-[18px] text-s-black">Bukti</h1>
+        <div class="font-normal text-[13px] text-s-black">
+          <p>Jenis : STNK</p>
+        </div>
+        <img src="../../assets/img/contohBukti.JPG" alt="foot bukti" class="w-full h-full object-cover">
+      </div>
       <!-- Button -->
       <div class="flex w-full gap-[10px]">
         <a href="https://wa.me/<?= $noHp ?>" target="_blank" class="w-full px-[15px] py-[5px] border border-ijo-400 rounded-[10px] hover:bg-ijo-400 hover:text-s-white text-center text-medium text-[13px] text-s-black">Hubungi</a>
-        <a href="./profile_detailLaporan.php" class="w-full px-[15px] py-[5px] border border-ijo-400 rounded-[10px] hover:bg-ijo-400 hover:text-s-white text-center text-medium text-[13px] text-s-black">Cek Detail</a>
       </div>
 
     </section>

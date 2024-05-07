@@ -1,3 +1,6 @@
+<?php
+// Hapus session dulu
+?>
 <!DOCTYPE html>
 <html lang="en">
 

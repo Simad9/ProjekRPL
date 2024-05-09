@@ -1,5 +1,18 @@
 <?php
 // Hapus session dulu
+session_start();
+require "../../model/be_main.php";
+
+// Hapus session alias logout
+if (isset($_SESSION['id_user'])) {
+  unset($_SESSION['id_user']); 
+}
+
+// Login
+if (isset($_POST['submit'])) {
+  be_login();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +22,7 @@
   <title>Login | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] justify-center items-center h-screen">
+<body class="flex flex-col gap-[10px] p-[30px] justify-center items-center h-screen  bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- heading -->
   <div class="flex flex-col text-center justify-center items-center">
     <img src="../../assets/icon/Logo.png" alt="Logo">

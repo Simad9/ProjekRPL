@@ -1,3 +1,9 @@
+<?php 
+session_start();
+require "../../model/be_main.php";
+// Harus login dulu
+sessionProtection();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +12,7 @@
   <title>Detail Laporan | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] w-full">
+<body class="flex flex-col gap-[10px] p-[30px] w-full h-screen bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="profile.php">

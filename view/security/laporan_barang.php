@@ -1,3 +1,23 @@
+<?php
+session_start();
+require "../../model/be_main.php";
+// Harus login dulu
+sessionProtection();
+
+// kirim laporan barang
+if (isset($_POST["submit"])) {
+  be_laporanBarang();
+}
+
+// notif
+if (isset($_GET["status"])) {
+  switch ($_GET["status"]) {
+    case 'gagal;':
+      echo "<script>alert('Gagal Mengirim')</script>";
+      break;
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +26,7 @@
   <title>Laporan Barang | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] px-[30px] pt-[30px] pb-20 w-full relative">
+<body class="flex flex-col gap-[10px] px-[30px] pt-[30px] pb-20 w-full h-screen relative  bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="homepage.php">
@@ -24,13 +44,13 @@
     <form action="" method="post" class="flex flex-col gap-[10px]">
       <!-- Tanggal + Waktu -->
       <div class="flex gap-1 w-full">
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
           <label class="font-semibold text-[15px] text-s-black">Tanggal :</label>
-          <input type="text" placeholder="30/10/2022" disabled class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black w-full">
+          <input type="text" placeholder="<?= $tanggal_sekarang ?>" disabled class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black w-full">
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
           <label class="font-semibold text-[15px] text-s-black">Waktu :</label>
-          <input type="text" placeholder="10:00:00 WIB" disabled class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black w-full">
+          <input type="text" placeholder="<?= $waktu_sekarang ?> WIB" disabled class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black w-full">
         </div>
       </div>
 
@@ -47,8 +67,8 @@
 
       <!-- Note -->
       <div class="flex flex-col gap-1">
-        <label for="Nomer Handphone" class="font-semibold text-[15px] text-s-black">Note :</label>
-        <textarea type="text" name="Note" id="Note" placeholder="Note" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black"></textarea>
+        <label for="note" class="font-semibold text-[15px] text-s-black">Note :</label>
+        <textarea type="text" name="note" id="note" placeholder="Note" required class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black"></textarea>
       </div>
 
       <!-- Bukti Foto -->
@@ -58,18 +78,20 @@
           <img src="../../assets/icon/guest-icon-upload.png" id="foto-preview" class="object-cover w-[100px] h-[100px] border border-s-black rounded-[10px]" alt="Foto">
           <p class="font-normal text-[10px] text-s-black">kirim foto maksimal 2mb</p>
         </label>
-        <input type="file" id="foto" required class="hidden">
+        <input type="file" id="foto" class="hidden">
       </div>
+
       <!-- Button -->
       <button type="submit" name="submit" class="px-[30px] py-[8px] bg-ijo-500 w-full rounded-[10px] hover:bg-ijo-300">
         <p class="font-semibold text-xl text-s-white">INPUT</p>
       </button>
     </form>
+
   </main>
   <!-- END Main -->
 
   <!-- Navbar -->
-  <nav class="flex px-[63px] py-[13px] justify-between items-center bg-ijo-500 w-full  bottom-0 left-0 fixed">
+  <nav class="flex px-[63px] py-[13px] justify-between items-center bg-ijo-500 w-full bottom-0 left-0 absolute">
     <!-- Barang -->
     <a href="../security/laporan_barang.php">
       <div class="flex flex-col gap-0 justify-center items-center group cursor-pointer ">

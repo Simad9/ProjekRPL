@@ -24,6 +24,10 @@ module.exports = {
         "ijo-600": "#007B3F",
       },
     },
+    screens: {
+      md: "768px",
+      lg: "1024px",
+    },
   },
   plugins: [],
 };

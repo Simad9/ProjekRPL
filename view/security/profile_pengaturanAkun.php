@@ -1,3 +1,17 @@
+<?php
+session_start();
+require "../../model/be_main.php";
+// Harus login dulu
+sessionProtection();
+
+// Fetch id dari session
+$id_user = $_SESSION["id_user"];
+
+// ambil data security
+$query = "SELECT * FROM user WHERE id_user = $id_user";
+$hasil = mysqli_query($koneksi, $query);
+$data = mysqli_fetch_assoc($hasil);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +21,7 @@
 </head>
 
 
-<body class="flex flex-col gap-[10px] p-[30px] w-full">
+<body class="flex flex-col gap-[10px] p-[30px] w-full h-screen bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="profile.php">
@@ -26,13 +40,13 @@
         <!-- Form input - Username -->
         <div class="flex flex-col gap-1">
           <label for="username" class="font-semibold text-[15px] text-s-black">Username :</label>
-          <input type="text" name="username" id="username" placeholder="Masukkan Username Anda" value="123" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
+          <input type="text" name="username" id="username" placeholder="Masukkan Username Anda" value="<?= $data['username'] ?>" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
         </div>
 
         <!-- Form input - email -->
         <div class="flex flex-col gap-1">
           <label for="email" class="font-semibold text-[15px] text-s-black">Email :</label>
-          <input type="email" name="email" id="email" placeholder="Masukkan Email Anda" value="wijdan@gmail.com" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
+          <input type="email" name="email" id="email" placeholder="Masukkan Email Anda" value="<?= $data['email'] ? $data['email'] : "Isi Email Anda" ?>" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
         </div>
       </div>
 
@@ -41,13 +55,13 @@
         <!-- Form input - Username -->
         <div class="flex flex-col gap-1">
           <label for="passwordLama" class="font-semibold text-[15px] text-s-black">Password Lama :</label>
-          <input type="password" name="passwordLama" id="passwordLama" placeholder="Password Lama Anda" value="123" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
+          <input type="password" name="passwordLama" id="passwordLama" placeholder="Password Lama Anda" value="" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
         </div>
 
         <!-- Form input - Username -->
         <div class="flex flex-col gap-1">
           <label for="passwordBaru" class="font-semibold text-[15px] text-s-black">Password Baru :</label>
-          <input type="password" name="passwordBaru" id="passwordBaru" placeholder="Password Baru Anda" value="123" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
+          <input type="password" name="passwordBaru" id="passwordBaru" placeholder="Password Baru Anda" value="" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
         </div>
       </div>
 

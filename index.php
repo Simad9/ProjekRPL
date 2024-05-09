@@ -13,14 +13,11 @@
   <title>Security App</title>
 </head>
 
-<body class="flex flex-col justify-center items-center p-[30px] gap-[20px] h-screen">
-
+<body class="flex flex-col items-center justify-center h-screen  p-[30px] gap-[20px] bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Judul -->
-  <section>
-    <div class="flex flex-col justify-center items-center">
-      <img src="./assets/icon/Logo.png" alt="Logo Aps">
-      <p class="font-bold text-lg text-center">Untuk memulai, silahkan peran yang ingin Anda ambil</p>
-    </div>
+  <section class="flex flex-col justify-center items-center">
+    <img src="./assets/icon/Logo.png" alt="Logo Aps">
+    <p class="font-bold text-lg text-center">Untuk memulai, silahkan peran yang ingin Anda ambil</p>
   </section>
   <!-- END Judul -->
 

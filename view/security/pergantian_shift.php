@@ -1,6 +1,15 @@
 <?php
+session_start();
+require "../../model/be_main.php";
+// Harus login dulu
+sessionProtection();
+
 $laporan = true;
 isset($_GET['buka']) ? $laporan = $_GET['buka'] : $laporan = true;
+
+// Fetch Data di Laporan Barang
+$query = "SELECT * FROM lap_barang";
+$hasil = mysqli_query($koneksi, $query);
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +20,7 @@ isset($_GET['buka']) ? $laporan = $_GET['buka'] : $laporan = true;
   <title>Pergantian Shift | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] w-full">
+<body class="flex flex-col gap-[10px] p-[30px] w-full h-screen relative bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="homepage.php">
@@ -52,6 +61,18 @@ isset($_GET['buka']) ? $laporan = $_GET['buka'] : $laporan = true;
         <div class="flex flex-col gap-1">
           <label for="laporan" class="font-semibold text-[15px] text-s-black">Laporan secara tertulis</label>
           <textarea id="laporan" name="laporan_text" placeholder="Laporan secara tertulis" class="px-[15px] py-[5px] rounded-[10px] text-s-black border border-s-black"></textarea>
+        </div>
+
+        <!-- Barang yang dituju -->
+        <div class="flex flex-col gap-1 relative">
+          <label for="barang" class="font-semibold text-[15px] text-s-black">Jenis Barang</label>
+          <img src="../../assets/icon/guest-icon-arrow.png" alt="arrow" class="-rotate-90 absolute right-3 top-1/2">
+          <select name="id_lapBarang" id="barang" class="px-[15px] py-[10px] rounded-[10px] text-s-black border border-s-black appearance-none">
+            <option value="">Opsi Bukti Kepemilikan</option>
+            <?php while ($barang = mysqli_fetch_assoc($hasil)) : ?>
+              <option value="<?= $barang['id_lapBarang'] ?>"><?= $barang['namaBarang'] ?></option>
+            <?php endwhile; ?>
+          </select>
         </div>
       <?php endif; ?>
 

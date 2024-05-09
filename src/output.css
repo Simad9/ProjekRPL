@@ -554,10 +554,6 @@ video {
   --tw-contain-style:  ;
 }
 
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
@@ -574,6 +570,10 @@ video {
   left: 0px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .right-3 {
   right: 0.75rem;
 }
@@ -586,8 +586,9 @@ video {
   top: 50%;
 }
 
-.right-0 {
-  right: 0px;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mt-4 {
@@ -635,6 +636,10 @@ video {
   height: 100px;
 }
 
+.h-\[2px\] {
+  height: 2px;
+}
+
 .h-\[3px\] {
   height: 3px;
 }
@@ -647,20 +652,16 @@ video {
   height: 75px;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .h-screen {
   height: 100vh;
 }
 
-.h-\[2px\] {
-  height: 2px;
-}
-
 .w-\[100px\] {
   width: 100px;
-}
-
-.w-\[130px\] {
-  width: 130px;
 }
 
 .w-\[50px\] {
@@ -742,10 +743,6 @@ video {
   gap: 5px;
 }
 
-.gap-\[10\] {
-  gap: 10;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
@@ -766,10 +763,6 @@ video {
   border-radius: 0.375rem;
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .border {
   border-width: 1px;
 }
@@ -778,13 +771,19 @@ video {
   border-width: 2px;
 }
 
-.border-\[3px\] {
-  border-width: 3px;
+.border-x {
+  border-left-width: 1px;
+  border-right-width: 1px;
 }
 
 .border-ijo-400 {
   --tw-border-opacity: 1;
   border-color: rgb(39 255 150 / var(--tw-border-opacity));
+}
+
+.border-ijo-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 123 63 / var(--tw-border-opacity));
 }
 
 .border-s-black {
@@ -816,11 +815,6 @@ video {
 .bg-s-white {
   --tw-bg-opacity: 1;
   background-color: rgb(251 252 255 / var(--tw-bg-opacity));
-}
-
-.bg-slate-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
 }
 
 .fill-black {
@@ -983,16 +977,13 @@ video {
   color: rgb(251 252 255 / var(--tw-text-opacity));
 }
 
-.text-\[\] {
-  color: ;
-}
-
 .opacity-0 {
   opacity: 0;
 }
 
 html {
   font-family: 'Poppins', Arial, sans-serif;
+  background-color: #6F6F6F;
 }
 
 .hover\:border:hover {
@@ -1062,4 +1053,16 @@ html {
 
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .md\:w-9\/12 {
+    width: 75%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:w-7\/12 {
+    width: 58.333333%;
+  }
 }

@@ -4,10 +4,6 @@ require "../../model/be_main.php";
 // Harus login dulu
 sessionProtection();
 
-// Fetch Data di Laporan Barang
-$query = "SELECT * FROM lap_barang";
-$hasil = mysqli_query($koneksi, $query);
-
 // Fetch id dari session // ambil data security
 $id_user = $_SESSION["id_user"];
 $queryUser = "SELECT * FROM security WHERE id_user = $id_user";
@@ -23,7 +19,7 @@ $dataUser = mysqli_fetch_assoc($hasilUser);
 </head>
 
 <body class="relative bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
-  <section class="flex flex-col gap-[10px] p-[30px] w-full">
+  <section class="flex flex-col gap-[10px] p-[30px] w-full h-screen">
     <!-- Bagian atas -->
     <div class="flex justify-between items-center w-full">
       <img src="../../assets/img/anonim.jpg" alt="Foto Profile" class="size-[40px] rounded-full">
@@ -62,21 +58,15 @@ $dataUser = mysqli_fetch_assoc($hasilUser);
 
 
     <p class="font-semibold text-[15px] text-s-black">Barang yang dilaporkan : </p>
-    <!-- Perulangan card -->
-    <?php while ($data = mysqli_fetch_assoc($hasil)) : ?>
-      <div class="flex gap-[10px] bg-ijo-400 w-full p-[10px] rounded-[8px] items-center mb-10">
-        <img src="../../assets/icon/contoh.png" alt="Gambar Barang" class="object-cover w-[75px] h-[75px]">
-        <div class="w-full flex flex-col gap-[5px]">
-          <h2 class="font-semibold text-[18px] text-s-black"><?= $data["namaBarang"] ?></h2>
-          <div>
-            <p class="font-medium text-[13px] text-s-black">Tgl ditemukan : <span class="font-normal text-[13px] text-s-black"><?= tanggalBarangHilang($data['tanggal']) ?></span></p>
-            <p class="font-medium text-[13px] text-s-black">Ditemukan di : </p>
-            <p class="font-normal text-[13px] text-s-black"><?= $data['deskripsi']  ?></p>
-          </div>
+    <!-- button absen, kalo udah jamnya di klik bisa absen -->
+    <form action="" method="post">
+      <button type="submit" name="submit" class="px-[30px] py-[10px] bg-ijo-400 w-full rounded-[10px] hover:bg-ijo-300">
+        <p class="font-semibold text-xl text-s-white">Absen Masuk Jaga</p>
+      </button>
+    </form>
 
-        </div>
-      </div>
-    <?php endwhile; ?>
+
+
     </div>
   </section>
 

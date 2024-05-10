@@ -4,6 +4,11 @@ require "../../model/be_main.php";
 // Harus login dulu
 sessionProtection();
 
+// update akun
+if (isset($_POST['submit'])) {
+  be_updateAkun();
+}
+
 // Fetch id dari session
 $id_user = $_SESSION["id_user"];
 
@@ -11,6 +16,18 @@ $id_user = $_SESSION["id_user"];
 $query = "SELECT * FROM user WHERE id_user = $id_user";
 $hasil = mysqli_query($koneksi, $query);
 $data = mysqli_fetch_assoc($hasil);
+
+// notif
+if (isset($_GET["status"])) {
+  switch ($_GET["status"]) {
+      case 'gagal':
+          echo "<script>alert('gagal mengirim data')</script>";
+          break;
+      case 'passwordLama':
+          echo "<script>alert('password lama tidak sesuai')</script>";
+          break;
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +52,10 @@ $data = mysqli_fetch_assoc($hasil);
   <!-- Main -->
   <main>
     <form action="" method="post" class="flex flex-col gap-[20px]">
+      <!-- hidden input -->
+      <input type="hidden" name="id_user" value="<?= $id_user ?>">
 
-      <div>
+      <div class="flex flex-col gap-[10px]">
         <!-- Form input - Username -->
         <div class="flex flex-col gap-1">
           <label for="username" class="font-semibold text-[15px] text-s-black">Username :</label>
@@ -50,18 +69,18 @@ $data = mysqli_fetch_assoc($hasil);
         </div>
       </div>
 
-      <div>
+      <div class="flex flex-col gap-[10px]">
         <h1 class="font-medium text-[15px] text-s-black ">Amankan akun Anda dengan kombinasi password yang baik</h1>
         <!-- Form input - Username -->
         <div class="flex flex-col gap-1">
           <label for="passwordLama" class="font-semibold text-[15px] text-s-black">Password Lama :</label>
-          <input type="password" name="passwordLama" id="passwordLama" placeholder="Password Lama Anda" value="" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
+          <input type="password" name="passwordLama" id="passwordLama" required placeholder="Password Lama Anda" value="" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
         </div>
 
         <!-- Form input - Username -->
         <div class="flex flex-col gap-1">
           <label for="passwordBaru" class="font-semibold text-[15px] text-s-black">Password Baru :</label>
-          <input type="password" name="passwordBaru" id="passwordBaru" placeholder="Password Baru Anda" value="" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
+          <input type="password" name="passwordBaru" id="passwordBaru" required placeholder="Password Baru Anda" value="" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
         </div>
       </div>
 

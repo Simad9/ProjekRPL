@@ -37,16 +37,6 @@ $hasil = mysqli_query($koneksi, $query);
     <p class="font-semibold text-[15px] text-s-black">Isi untuk laporan : </p>
     <form action="" method="get" class="flex flex-col gap-[10px]">
 
-      <!-- Terdapat Barang ? -->
-      <!-- <div class="flex flex-col gap-1">
-        <label for="laporan" class="font-semibold text-[15px] text-s-black">Terdapat barang hilang :</label>
-        <div class="flex gap-[10px] w-full">
-          <button id="adaLaporan" type="button" class="w-full px-[20px] py-[10px] bg-ijo-400 text-s-white text-center rounded-[10px] border border-ijo-400">Ada</button>
-          <button id="tidakAdaLaporan" type="button" class="w-full px-[20px] py-[10px] bg-s-white text-s-black text-center rounded-[10px] border border-ijo-400"> Tidak Ada</button>
-          <input id="laporan" type="hidden" name="laporan">
-        </div>
-      </div> -->
-
       <div class="flex flex-col gap-1">
         <label for="laporan" class="font-semibold text-[15px] text-s-black">Terdapat barang hilang :</label>
         <div class="flex gap-[10px] w-full">

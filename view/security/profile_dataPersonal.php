@@ -4,6 +4,11 @@ require "../../model/be_main.php";
 // Harus login dulu
 sessionProtection();
 
+// update data
+if (isset($_POST['submit'])) {
+  be_updateDataPersonal();
+}
+
 // Fetch id dari session
 $id_user = $_SESSION["id_user"];
 
@@ -34,6 +39,8 @@ $data = mysqli_fetch_assoc($hasil);
   <!-- Main -->
   <main>
     <form action="" method="post" class="flex flex-col gap-[10px]">
+      <!-- hidden input -->
+      <input type="hidden" name="id_security" value="<?= $data['id_security'] ?>">
 
       <!-- Foto Profile -->
       <div class="flex justify-center items-center">
@@ -64,8 +71,8 @@ $data = mysqli_fetch_assoc($hasil);
 
       <!-- Form input - No Hp -->
       <div class="flex flex-col gap-1">
-        <label for="NoHP" class="font-semibold text-[15px] text-s-black">Nomer Handphone :</label>
-        <input type="text" name="NoHP" id="NoHP" placeholder="Masukkan Nomer Handphone Anda" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black" value="<?= $data['noHp'] ?>">
+        <label for="NoHp" class="font-semibold text-[15px] text-s-black">Nomer Handphone :</label>
+        <input type="text" name="NoHp" id="NoHp" placeholder="Masukkan Nomer Handphone Anda" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black" value="<?= $data['noHp'] ?>">
       </div>
 
       <!-- Button -->

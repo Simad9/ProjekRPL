@@ -5,12 +5,24 @@ require "../../model/be_main.php";
 
 // Hapus session alias logout
 if (isset($_SESSION['id_user'])) {
-  unset($_SESSION['id_user']); 
+  unset($_SESSION['id_user']);
 }
 
 // Login
 if (isset($_POST['submit'])) {
   be_login();
+}
+
+// noitf
+if (isset($_GET["status"])) {
+  switch ($_GET["status"]) {
+    case 'gagal':
+      echo "<script>alert('gagal login')</script>";
+      break;
+    case 'belumLogin':
+      echo "<script>alert('login terlebih dahulu')</script>";
+      break;
+  }
 }
 
 ?>

@@ -1,4 +1,7 @@
 <?php
+// Format jam Indonesia
+date_default_timezone_set('Asia/Jakarta');
+
 // Waktu sekarang
 $waktu_sekarang = date("H:i:s");
 

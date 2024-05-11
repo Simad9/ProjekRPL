@@ -9,6 +9,7 @@ if (isset($_GET["id"])) {
   $data = mysqli_fetch_assoc($hasil);
 } else {
   // Handle jika $_GET["id"] tidak diatur
+  $data = []; // Atau berikan nilai default, misalnya array kosong
 }
 
 // lapor kehilangan
@@ -16,25 +17,35 @@ if (isset($_POST["submit"])) {
   be_laporKehilangan();
 }
 
-// Notifikasi
+// notif
 if (isset($_GET["status"])) {
+  $message = "";
   switch ($_GET["status"]) {
-    case 'gagal;':
-      echo "<script>alert('Gagal Mengirim')</script>";
+    case 'gagal':
+      $message = "Gagal Mengirim";
+      break;
+    case 'notImage':
+      $message = "File bukan gambar";
+      break;
+    case 'bigSize':
+      $message = "File terlalu besar";
       break;
   }
+  echo "<script>alert('$message');</script>";
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
+<a href="../../img/kehilangan/"></a>
 
 <head>
   <?php include "../../tamplate/meta.php" ?>
   <title>Laporan Kehilangan | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] w-full  bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
+<body class="flex flex-col gap-[10px] p-[30px] w-full flex-shrink bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="homepage.php">
@@ -47,28 +58,31 @@ if (isset($_GET["status"])) {
   <div class="h-[3px] w-full bg-s-black rounded"></div>
 
   <!-- Barang -->
-  <p class="font-semibold text-[15px] text-s-black">Barang yang ditemukan : </p>
-  <!-- Perulangan card -->
-  <div class="flex gap-[10px] bg-ijo-400 w-full p-[10px] rounded-[8px] items-center">
-    <img src="../../assets/icon/contoh.png" alt="Gambar Barang" class="object-cover w-[75px] h-[75px]">
-    <div class="w-full flex flex-col gap-[5px]">
-      <h2 class="font-semibold text-[18px] text-s-black"><?= $data["namaBarang"] ?></h2>
-      <div>
-        <p class="font-medium text-[13px] text-s-black">Tgl ditemukan : <span class="font-normal text-[13px] text-s-black"><?= tanggalBarangHilang($data['tanggal']) ?></span></p>
-        <p class="font-medium text-[13px] text-s-black">Ditemukan di : </p>
-        <p class="font-normal text-[13px] text-s-black"><?= $data['deskripsi']  ?></p>
-      </div>
+  <?php if (!empty($data)) : ?>
+    <p class="font-semibold text-[15px] text-s-black">Barang yang ditemukan : </p>
+    <!-- Perulangan card -->
+    <div class="flex gap-[10px] bg-ijo-400 w-full p-[10px] rounded-[8px] items-center">
+    <img src="../../img/laporan/<?= $data["fotoBarang"] ?>" alt="Gambar Barang" class="object-cover w-[85px] h-[85px] rounded-md">
+      <div class="w-full flex flex-col gap-[5px]">
+        <h2 class="font-semibold text-[18px] text-s-black"><?= $data["namaBarang"] ?></h2>
+        <div>
+          <p class="font-medium text-[13px] text-s-black">Tgl ditemukan : <span class="font-normal text-[13px] text-s-black"><?= tanggalBarangHilang($data['tanggal']) ?></span></p>
+          <p class="font-medium text-[13px] text-s-black">Ditemukan di : </p>
+          <p class="font-normal text-[13px] text-s-black"><?= $data['deskripsi'] ?></p>
+        </div>
 
+      </div>
     </div>
-  </div>
+  <?php endif; ?>
   <!-- END Barang -->
   <div class="h-[3px] w-full bg-s-black rounded"></div>
 
   <!-- Bukti Kepemilkan -->
   <p class="font-semibold text-[15px] text-s-black">Bukti Kepemilikan : </p>
-  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" class="flex flex-col gap-[10px]">
+  <form action="" method="post" enctype="multipart/form-data" class="flex flex-col gap-[10px]">
     <!-- Hidden data -->
-    <input type="hidden" name="id_lapBarang" value="<?= $data["id_lapBarang"] ?>">
+    <input type="hidden" name="id_lapBarang" value="<?= isset($id_lapBarang) ? $id_lapBarang : '' ?>">
+
     <!-- Nama -->
     <div class="flex flex-col gap-1">
       <label for="nama" class="font-semibold text-[15px] text-s-black">Nama :</label>
@@ -99,7 +113,7 @@ if (isset($_GET["status"])) {
         <img src="../../assets/icon/guest-icon-upload.png" id="foto-preview" class="object-cover w-[100px] h-[100px] border border-s-black rounded-[10px]" alt="Foto">
         <p class="font-normal text-[10px] text-s-black">kirim foto maksimal 2mb</p>
       </label>
-      <input type="file" id="foto" name="foto" class="hidden">
+      <input type="file" id="foto" name="foto" accept="image/*" class="hidden">
     </div>
 
     <!-- Button -->
@@ -108,8 +122,9 @@ if (isset($_GET["status"])) {
   </form>
 
   <script>
-    const fotoPreview = document.getElementById('foto-preview');
-    foto.onchange = function() {
+    document.getElementById('foto').onchange = function(event) {
+      event.preventDefault(); // Mencegah default action form
+      const fotoPreview = document.getElementById('foto-preview');
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();

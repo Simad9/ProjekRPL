@@ -26,7 +26,7 @@ function be_login()
       $_SESSION['id_user'] = $dataUser['id_user'];
 
       // redirect ke halaman homepage
-      header("location:homepage.php?status=gagal");
+      header("location:homepage.php");
       exit();
     } else {
       header("location:login.php?status=gagal");

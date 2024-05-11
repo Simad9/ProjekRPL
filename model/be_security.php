@@ -8,8 +8,38 @@ function be_laporanBarang()
   $deskripsi = $_POST["note"];
 
   // Foto logic
+  $namaFile = $_FILES['foto']['name'];
+  $ukuranFile = $_FILES['foto']['size'];
+  $tmpNama = $_FILES['foto']['tmp_name'];
 
-  $query = "INSERT INTO `lap_barang` (`id_lapBarang`, `namaBarang`, `tanggal`, `deskripsi`) VALUES (NULL, '$jenisBarang', current_timestamp(), '$deskripsi');";
+  // cek apakah yang diupload adalah file yang benar
+  $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+  $ekstensiGambar = pathinfo($namaFile, PATHINFO_EXTENSION);
+  if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+    header("Location: laporan_barang.php?status=notImage");
+    exit;
+  }
+
+  // cek jika ukurannya terlalu besar
+  if ($ukuranFile > 2000000) { //ukuran 2mb
+    header("Location: laporan_barang.php?status=bigSize");
+    exit;
+  }
+
+  // generate nama baru
+  $namaFileBaru = uniqid(); //generate nama baru
+  $namaFileBaru .= '.';
+  $namaFileBaru .= $ekstensiGambar;
+
+  // move file ke folder
+  if (!move_uploaded_file($tmpNama, "../../img/laporan/" . $namaFileBaru)) {
+    // file tidak pindah, ERROR
+    header("Location: laporan_barang.php?status=gagal");
+    exit();
+  }
+
+
+  $query = "INSERT INTO `lap_barang` (`id_lapBarang`, `namaBarang`, `tanggal`, `deskripsi`, `fotoBarang`) VALUES (NULL, '$jenisBarang', current_timestamp(), '$deskripsi', '$namaFileBaru')";
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
@@ -82,4 +112,32 @@ function be_updateAkun()
     header("location:laporan_barang.php?status=gagal");
     exit();
   }
+}
+
+// Masuk absen
+function be_masukAbsen()
+{
+  global $koneksi;
+
+
+  if (true) {
+    header("location: homepage.php");
+    exit();
+  } else {
+    header("location:homepage.php?status=gagal");
+    exit();
+  }
+}
+
+// Fetch id_security dari id_user
+function be_fetchIdSecurity()
+{
+  global $koneksi;
+
+  $id_user = $_SESSION['id_user'];
+  $query = "SELECT id_security FROM security WHERE id_user = $id_user";
+  $hasil = mysqli_query($koneksi, $query);
+  $data = mysqli_fetch_assoc($hasil);
+
+  return $data['id_security'];
 }

@@ -22,7 +22,7 @@ $data = mysqli_fetch_assoc($hasil);
   <title>Detail Laporan | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] w-full h-screen bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
+<body class="flex flex-col gap-[10px] p-[30px] w-full flex-shrink bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="profile_laporanMahasiswa.php">
@@ -39,7 +39,7 @@ $data = mysqli_fetch_assoc($hasil);
     <section class="flex flex-col gap-[5px] p-[10px] border-[2px] border-ijo-400 rounded-[10px]">
       <!-- Barangnya -->
       <div class="flex gap-[10px] w-full p-[10px] rounded-[8px] items-center">
-        <img src="../../assets/icon/contoh.png" alt="Gambar Barang" class="object-cover w-[75px] h-[75px]">
+        <img src="../../img/laporan/<?= $data['fotoBarang'] ?>" alt="Gambar Barang" class="object-cover w-[80px] h-[80px] rounded-md">
         <div class="w-full flex flex-col gap-[5px]">
           <h2 class="font-semibold text-[18px] text-s-black"><?= $data["namaBarang"] ?></h2>
           <div>
@@ -64,7 +64,7 @@ $data = mysqli_fetch_assoc($hasil);
         <div class="font-normal text-[13px] text-s-black">
           <p>Jenis : <?= $data['buktiKepemilikan'] ?></p>
         </div>
-        <img src="../../assets/img/contohBukti.JPG" alt="foot bukti" class="w-full h-full object-cover">
+        <img src="../../img/kehilangan/<?= $data['fotoBukti'] ?>" alt="foot bukti" class="w-full h-1/2 object-cover  rounded-md">
       </div>
       <!-- Button -->
       <div class="flex w-full gap-[10px]">

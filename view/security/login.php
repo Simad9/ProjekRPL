@@ -52,11 +52,6 @@ if (isset($_GET["status"])) {
       <p class="font-bold text-xl text-s-white">MASUK</p>
     </button>
   </form>
-  <a href="../security/homepage.php">
-    <button class="px-[30px] py-[8px] bg-ijo-500 rounded-[10px] mt-4" type="submit" name="submit">
-      <p class="font-bold text-xl text-s-white">MASUK</p>
-    </button>
-  </a>
 </body>
 
 </html>

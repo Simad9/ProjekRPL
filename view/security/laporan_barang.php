@@ -10,14 +10,25 @@ if (isset($_POST["submit"])) {
 }
 
 // notif
+// notif
 if (isset($_GET["status"])) {
+  $message = "";
   switch ($_GET["status"]) {
-    case 'gagal;':
-      echo "<script>alert('Gagal Mengirim')</script>";
+    case 'gagal':
+      $message = "Gagal Mengirim";
+      break;
+    case 'notImage':
+      $message = "File bukan gambar";
+      break;
+    case 'bigSize':
+      $message = "File terlalu besar";
       break;
   }
+  echo "<script>alert('$message');</script>";
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +52,7 @@ if (isset($_GET["status"])) {
   <!-- Main -->
   <main class="flex flex-col gap-[10px] w-full">
     <p class="font-semibold text-[15px] text-s-black">Isi barang yang ditemukan : </p>
-    <form action="" method="post" class="flex flex-col gap-[10px]">
+    <form action="" method="post" enctype="multipart/form-data" class="flex flex-col gap-[10px]">
       <!-- Tanggal + Waktu -->
       <div class="flex gap-1 w-full">
         <div class="flex flex-col w-full">
@@ -78,13 +89,15 @@ if (isset($_GET["status"])) {
           <img src="../../assets/icon/guest-icon-upload.png" id="foto-preview" class="object-cover w-[100px] h-[100px] border border-s-black rounded-[10px]" alt="Foto">
           <p class="font-normal text-[10px] text-s-black">kirim foto maksimal 2mb</p>
         </label>
-        <input type="file" id="foto" class="hidden">
+        <input type="file" id="foto" name="foto" accept="image/*" class="hidden">
       </div>
+
 
       <!-- Button -->
       <button type="submit" name="submit" class="px-[30px] py-[8px] bg-ijo-500 w-full rounded-[10px] hover:bg-ijo-300">
         <p class="font-semibold text-xl text-s-white">INPUT</p>
       </button>
+
     </form>
 
   </main>
@@ -122,9 +135,12 @@ if (isset($_GET["status"])) {
   </nav>
   <!-- END Navbar -->
 
+
   <script>
-    const fotoPreview = document.getElementById('foto-preview');
-    foto.onchange = function() {
+    // Memperbaiki penanganan perubahan gambar
+    document.getElementById('foto').onchange = function(event) {
+      event.preventDefault(); // Mencegah default action form
+      const fotoPreview = document.getElementById('foto-preview');
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
@@ -135,6 +151,7 @@ if (isset($_GET["status"])) {
       }
     };
   </script>
+
 </body>
 
 </html>

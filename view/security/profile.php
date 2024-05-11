@@ -1,3 +1,15 @@
+<?php
+session_start();
+require "../../model/be_main.php";
+// Harus login dulu
+sessionProtection();
+
+// Fetch id dari session // ambil data security
+$id_user = $_SESSION["id_user"];
+$queryUser = "SELECT * FROM security WHERE id_user = $id_user";
+$hasilUser = mysqli_query($koneksi, $queryUser);
+$dataUser = mysqli_fetch_assoc($hasilUser);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +18,7 @@
   <title>Profile | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] w-full">
+<body class="flex flex-col gap-[10px] p-[30px] w-full h-screen relative bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <!-- Header -->
   <div class="flex justify-between w-full">
     <a href="homepage.php">
@@ -23,7 +35,7 @@
     <div class="flex gap-[10px] p-[5px] justify-center">
       <img src="../../assets/img/anonim.jpg" alt="Foto Profile" class="size-[50px] rounded-[8px]">
       <div class="text-t-black">
-        <h1 class="font-semibold text-[18px]">Wijdan Akhmad S</h1>
+        <h1 class="font-semibold text-[18px]"><?= $dataUser['nama'] ?></h1>
         <p class="font-normal text-[15px]">Security Kampus 2</p>
       </div>
     </div>

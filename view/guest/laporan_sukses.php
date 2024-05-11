@@ -6,7 +6,7 @@
   <title>Laporan Sukses | Security App</title>
 </head>
 
-<body class="flex flex-col gap-[10px] p-[30px] h-screen">
+<body class="flex flex-col gap-[10px] p-[30px] h-screen  bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
   <h1 class="font-semibold text-xl text-s-black text-center">Laporan Kehilangan</h1>
   <div class="h-[3px] w-full bg-s-black rounded"></div>
   <main class="flex flex-col gap-[20px] h-screen justify-center items-center w-full">

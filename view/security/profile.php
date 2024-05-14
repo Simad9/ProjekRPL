@@ -9,6 +9,24 @@ $id_user = $_SESSION["id_user"];
 $queryUser = "SELECT * FROM security WHERE id_user = $id_user";
 $hasilUser = mysqli_query($koneksi, $queryUser);
 $dataUser = mysqli_fetch_assoc($hasilUser);
+
+// notif
+// Notif
+if (isset($_GET["status"])) {
+  $message = "";
+  switch ($_GET["status"]) {
+    case 'gagal':
+      $message = "Gagal Mengirim";
+      break;
+    case 'updateAkun':
+      $message = "Berhasil update akun";
+      break;
+    case 'updateProfile':
+      $message = "Berhasil update profile";
+      break;
+  }
+  echo "<script>alert('$message');</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

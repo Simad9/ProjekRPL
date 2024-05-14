@@ -4,6 +4,11 @@ require "../../model/be_main.php";
 // Harus login dulu
 sessionProtection();
 
+// selesai Jaga
+if (isset($_GET['submit'])) {
+  be_selesaiJaga();
+}
+
 $laporan = true;
 isset($_GET['buka']) ? $laporan = $_GET['buka'] : $laporan = true;
 
@@ -11,6 +16,24 @@ isset($_GET['buka']) ? $laporan = $_GET['buka'] : $laporan = true;
 $query = "SELECT * FROM lap_barang";
 $hasil = mysqli_query($koneksi, $query);
 
+// Fetch id dari session
+$id_security = be_fetchIdSecurity();
+$queryJadwal = "SELECT * FROM jadwal_security WHERE id_security = $id_security";
+$dataJadwal = mysqli_fetch_assoc(mysqli_query($koneksi, $queryJadwal));
+
+// slesai jaga
+$queryJaga = "SELECT * FROM jadwal_security 
+INNER JOIN jadwal ON jadwal.id_jadwal = jadwal_security.id_jadwal
+INNER JOIN security ON security.id_security = jadwal_security.id_security
+WHERE jadwal_security.id_security = $id_security;";
+$fetchJaga = mysqli_query($koneksi, $queryJaga);
+$dataJaga = mysqli_fetch_assoc($fetchJaga);
+$dataMulai = $dataJaga['waktuMulai'];
+$dataSelesai = $dataJaga['waktuSelesai'];
+$selesaiJaga = false;
+if ($waktu_sekarang >= $dataSelesai) {
+  $selesaiJaga = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +58,10 @@ $hasil = mysqli_query($koneksi, $query);
   <!-- Main -->
   <main class="flex flex-col gap-[10px] w-full">
     <p class="font-semibold text-[15px] text-s-black">Isi untuk laporan : </p>
-    <form action="" method="get" class="flex flex-col gap-[10px]">
+    <form action="../../model/be_selesaiJaga.php" method="post" class="flex flex-col gap-[10px]">
+      <!-- hidden data -->
+      <input type="hidden" name="id_jadwal" value="<?= $dataJadwal['id_jadwal'] ?>">
+      <input type="hidden" name="id_security" value="<?= $id_security ?>">
 
       <div class="flex flex-col gap-1">
         <label for="laporan" class="font-semibold text-[15px] text-s-black">Terdapat barang hilang :</label>
@@ -50,7 +76,7 @@ $hasil = mysqli_query($koneksi, $query);
       <?php if ($laporan) : ?>
         <div class="flex flex-col gap-1">
           <label for="laporan" class="font-semibold text-[15px] text-s-black">Laporan secara tertulis</label>
-          <textarea id="laporan" name="laporan_text" placeholder="Laporan secara tertulis" class="px-[15px] py-[5px] rounded-[10px] text-s-black border border-s-black"></textarea>
+          <textarea id="laporan" name="note" placeholder="Laporan secara tertulis" class="px-[15px] py-[5px] rounded-[10px] text-s-black border border-s-black"></textarea>
         </div>
 
         <!-- Barang yang dituju -->
@@ -67,9 +93,15 @@ $hasil = mysqli_query($koneksi, $query);
       <?php endif; ?>
 
       <!-- Button -->
-      <button type="submit" name="submit" class="px-[30px] py-[8px] bg-ijo-500 w-full rounded-[10px] hover:bg-ijo-300">
-        <p class="font-semibold text-xl text-s-white">LAPOR</p>
-      </button>
+      <?php if ($selesaiJaga) : ?>
+        <button type="submit" name="submit" class="px-[30px] py-[8px] bg-ijo-500 w-full rounded-[10px] hover:bg-ijo-300">
+          <p class="font-semibold text-xl text-s-white">LAPOR</p>
+        </button>
+      <?php else : ?>
+        <button type="button" class="px-[30px] py-[10px] bg-slate-500 w-full rounded-[10px] mb-2">
+          <p class="font-semibold text-xl text-s-white text-center">Belum bisa Lapor</p>
+        </button>
+      <?php endif; ?>
     </form>
   </main>
   <!-- END Main -->

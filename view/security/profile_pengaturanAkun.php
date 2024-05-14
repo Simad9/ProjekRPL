@@ -65,7 +65,7 @@ if (isset($_GET["status"])) {
         <!-- Form input - email -->
         <div class="flex flex-col gap-1">
           <label for="email" class="font-semibold text-[15px] text-s-black">Email :</label>
-          <input type="email" name="email" id="email" placeholder="Masukkan Email Anda" value="<?= $data['email'] ? $data['email'] : "Isi Email Anda" ?>" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
+          <input type="email" name="email" id="email" placeholder="Masukkan Email Anda" value="<?= $data['email'] ? $data['email'] : "" ?>" class="px-[15px] py-[5px] rounded-[10px] text-s-black border-[2px] border-s-black">
         </div>
       </div>
 

@@ -43,7 +43,7 @@ function be_laporanBarang()
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: homepage.php");
+    header("location: homepage.php?status=berhasilBarang");
     exit();
   } else {
     header("location:laporan_barang.php?status=gagal");
@@ -62,16 +62,13 @@ function be_updateDataPersonal()
   $alamat = $_POST["alamat"];
   $NoHp = $_POST["NoHp"];
 
-
-  // Foto logic
-
   $query = "UPDATE security
   SET nama = '$nama', tgl_lhr= '$tgl_lhr', alamat = '$alamat', noHp = '$NoHp'
   WHERE id_security = $id_security;";
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: homepage.php");
+    header("location: profile.php?status=updateProfile");
     exit();
   } else {
     header("location:laporan_barang.php?status=gagal");
@@ -106,25 +103,10 @@ function be_updateAkun()
   }
 
   if ($hasil) {
-    header("location: homepage.php");
+    header("location: profile.php?status=updateAkun");
     exit();
   } else {
     header("location:laporan_barang.php?status=gagal");
-    exit();
-  }
-}
-
-// Masuk absen
-function be_masukAbsen()
-{
-  global $koneksi;
-
-
-  if (true) {
-    header("location: homepage.php");
-    exit();
-  } else {
-    header("location:homepage.php?status=gagal");
     exit();
   }
 }
@@ -140,4 +122,55 @@ function be_fetchIdSecurity()
   $data = mysqli_fetch_assoc($hasil);
 
   return $data['id_security'];
+}
+
+// Mulai Jaga
+function be_mulaiJaga()
+{
+  global $koneksi;
+
+  $id_security = $_POST['id_security'];
+  $id_jadwal = $_POST["id_jadwal"];
+
+  $query = "INSERT INTO `lap_shift` (`id_lapShift`, `id_security`, `id_jadwal`, `id_lapBarang`, `waktuMulai`, `waktuSelesai`, `note`) VALUES (NULL, '$id_security', '$id_jadwal', NULL, current_timestamp(), NULL, NULL);";
+  $hasil = mysqli_query($koneksi, $query);
+  echo "tai";
+  die;
+
+  if ($hasil) {
+    header("location: homepage.php?status=berhasil");
+    exit();
+  } else {
+    header("location: homepage.php?status=gagal");
+    exit();
+  }
+}
+
+// selesai Jaga
+function be_selesaiJaga()
+{
+  global $koneksi;
+
+  $id_security = $_POST['id_security'];
+  $id_lapBarang = $_POST["id_lapBarang"] ? $_POST["id_lapBarang"] : null;
+  $note = $_POST["note"] ? $_POST["note"] : null;
+
+  $query = "UPDATE lap_shift
+  SET id_lapBarang = '$id_lapBarang', waktuSelesai = current_timestamp(), note = '$note'
+  WHERE id_security = $id_security;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  $id_jadwal = $_POST["id_jadwal"] + 1;
+  $query = "UPDATE jadwal_security 
+  SET id_jadwal = '$id_jadwal' 
+  WHERE id_security = '$id_security';";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: homepage.php?status=beresJaga");
+    exit();
+  } else {
+    header("location: homepage.php?status=gagal");
+    exit();
+  }
 }

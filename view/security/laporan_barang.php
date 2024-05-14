@@ -10,7 +10,6 @@ if (isset($_POST["submit"])) {
 }
 
 // notif
-// notif
 if (isset($_GET["status"])) {
   $message = "";
   switch ($_GET["status"]) {

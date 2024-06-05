@@ -574,13 +574,41 @@ video {
   top: 0px;
 }
 
+.-z-10 {
+  z-index: -10;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
+.-mt-\[40px\] {
+  margin-top: -40px;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.mb-\[15px\] {
+  margin-bottom: 15px;
+}
+
 .flex {
   display: flex;
+}
+
+.hidden {
+  display: none;
 }
 
 .size-\[30px\] {
@@ -588,16 +616,38 @@ video {
   height: 30px;
 }
 
-.h-\[3px\] {
-  height: 3px;
+.size-\[100px\] {
+  width: 100px;
+  height: 100px;
+}
+
+.size-\[64px\] {
+  width: 64px;
+  height: 64px;
+}
+
+.h-\[100px\] {
+  height: 100px;
 }
 
 .h-screen {
   height: 100vh;
 }
 
+.h-\[64px\] {
+  height: 64px;
+}
+
 .w-full {
   width: 100%;
+}
+
+.w-\[64px\] {
+  width: 64px;
+}
+
+.w-\[100px\] {
+  width: 100px;
 }
 
 .cursor-pointer {
@@ -612,6 +662,10 @@ video {
   align-items: center;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -624,8 +678,8 @@ video {
   gap: 0px;
 }
 
-.gap-1 {
-  gap: 0.25rem;
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .gap-\[10px\] {
@@ -636,8 +690,40 @@ video {
   gap: 20px;
 }
 
+.gap-\[5px\] {
+  gap: 5px;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+
+.rounded-\[8px\] {
+  border-radius: 8px;
+}
+
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-bl-\[10px\] {
+  border-bottom-left-radius: 10px;
+}
+
+.rounded-br-\[10px\] {
+  border-bottom-right-radius: 10px;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .border-x {
@@ -645,9 +731,20 @@ video {
   border-right-width: 1px;
 }
 
+.border-ijo-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 191 98 / var(--tw-border-opacity));
+}
+
 .border-ijo-600 {
   --tw-border-opacity: 1;
   border-color: rgb(0 123 63 / var(--tw-border-opacity));
+}
+
+.border-s-black {
+  border-color: rgb(33 33 33 / var(--tw-border-opacity));
+  --tw-border-opacity: 1;
+  border-inline-start-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .bg-black {
@@ -665,17 +762,31 @@ video {
   background-color: rgb(251 252 255 / var(--tw-bg-opacity));
 }
 
+.bg-s-grey {
+  --tw-bg-opacity: 1;
+  background-color: rgb(111 111 111 / var(--tw-bg-opacity));
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .p-1 {
   padding: 0.25rem;
+}
+
+.p-\[10px\] {
+  padding: 10px;
 }
 
 .p-\[30px\] {
   padding: 30px;
 }
 
-.px-\[25px\] {
-  padding-left: 25px;
-  padding-right: 25px;
+.px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .px-\[63px\] {
@@ -688,9 +799,42 @@ video {
   padding-bottom: 13px;
 }
 
+.px-\[15px\] {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.py-\[2px\] {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.px-\[10px\] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.py-\[5px\] {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.px-\[25px\] {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 .py-\[8px\] {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.pb-\[30px\] {
+  padding-bottom: 30px;
+}
+
+.pb-\[15px\] {
+  padding-bottom: 15px;
 }
 
 .text-center {
@@ -701,13 +845,28 @@ video {
   font-size: 12px;
 }
 
-.text-\[15px\] {
-  font-size: 15px;
+.text-\[20px\] {
+  font-size: 20px;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+.text-\[25px\] {
+  font-size: 25px;
+}
+
+.text-\[18px\] {
+  font-size: 18px;
+}
+
+.text-\[13px\] {
+  font-size: 13px;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
+}
+
+.text-\[15px\] {
+  font-size: 15px;
 }
 
 .text-xl {
@@ -717,6 +876,33 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.text-ijo-500 {
+  --tw-text-opacity: 1;
+  color: rgb(0 191 98 / var(--tw-text-opacity));
+}
+
+.text-ijo-600 {
+  --tw-text-opacity: 1;
+  color: rgb(0 123 63 / var(--tw-text-opacity));
+}
+
+.text-s-black {
+  --tw-text-opacity: 1;
+  color: rgb(33 33 33 / var(--tw-text-opacity));
 }
 
 .text-s-white {
@@ -730,7 +916,7 @@ video {
 
 html {
   font-family: 'Poppins', Arial, sans-serif;
-  background-color: #6F6F6F;
+  background-color: #FBFCFF;
 }
 
 .hover\:bg-ijo-400:hover {

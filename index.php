@@ -13,35 +13,42 @@
   <title>Security App</title>
 </head>
 
-<body class="flex flex-col items-center justify-center h-screen  p-[30px] gap-[20px] bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
-  <!-- Judul -->
-  <section class="flex flex-col justify-center items-center">
-    <img src="./assets/icon/Logo.png" alt="Logo Aps">
-    <p class="font-bold text-lg text-center">Untuk memulai, silahkan peran yang ingin Anda ambil</p>
-  </section>
-  <!-- END Judul -->
+<!-- <body class="flex flex-col items-center justify-center h-screen  p-[30px] gap-[20px] bg-s-white border-x border-ijo-600 mx-auto md:w-9/12 lg:w-7/12">
+  <h1 class="font-bold text-ijo-600">Test</h1>
+</body> -->
 
-  <!-- Pilih Role -->
-  <section class="flex flex-col gap-[10px] w-full">
-    <a href="view/security/login.php">
-      <div class="bg-ijo-500 hover:bg-ijo-400 cursor-pointer rounded px-[25px] py-[8px] flex flex-col gap-1 justify-center items-center w-full">
-        <img src="./assets/icon/icon-security.png" alt="Security">
-        <h1 class="font-bold text-xl text-s-white">SECURITY</h1>
-        <div class="h-[3px] w-full bg-s-white rounded"></div>
-        <p class="font-bold text-[15px] text-s-white text-center">Masuk sebagai Security, Anda adalah security di sini</p>
+<body class="flex flex-col bg-s-white w-full h-screen">
+  <img src="./assets/icon/hiasan bg.png" class="w-full">
+  <section class="flex flex-col justify-center items-center w-full px-[20px] gap-[10px] -mt-[40px]">
+    <img src="./assets/icon/Logo.png" class="">
+    <form action="" class="w-full flex flex-col gap-[20px]">
+      <div class="flex flex-col gap-[5px]">
+        <div id="username">
+          <h1 class="font-semibold text-s-black text-[20px]">Username</h1>
+          <input type="text" class="p-[10px] border border-s-black rounded-[10px] w-full" placeholder="Masukan Username anda">
+        </div>
+        <div id="password">
+          <h1 class="font-semibold text-s-black text-[20px]">Password</h1>
+          <input type="password" class="p-[10px] border border-s-black rounded-[10px] w-full" placeholder="Masukan Password anda">
+        </div>
       </div>
-    </a>
 
-    <a href="view/guest/homepage.php">
-      <div class="bg-ijo-500 hover:bg-ijo-400 cursor-pointer rounded px-[25px] py-[8px] flex flex-col gap-1 justify-center items-center w-full">
-        <img src="./assets/icon/icon-guest.png" alt="Guest">
-        <h1 class="font-bold text-xl text-s-white">GUEST</h1>
-        <div class="h-[3px] w-full bg-s-white rounded"></div>
-        <p class="font-bold text-[15px] text-s-white text-center">Masuk sebagai Guest, Untuk melihat barang hilang</p>
+      <div id="button-group" class="flex flex-col justify-center gap-[10px] w-full">
+
+
+        <button class="w-full p-[10px] rounded-[10px] bg-ijo-500 text-s-white font-medium text-[20px]">MASUK</button>
+
+
+        <a href="./view/mahasiswa/LaporanBarang.php" class="w-full">
+          <div class="w-full p-[10px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-medium text-[20px] text-center">Masuk sebagai Mahasiswa</div>
+        </a>
+
       </div>
-    </a>
+
+    </form>
+    </div>
+
   </section>
-  <!-- END Pilih Role -->
 </body>
 
 </html>

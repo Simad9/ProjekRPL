@@ -21,7 +21,8 @@
   <img src="./assets/icon/hiasan bg.png" class="w-full">
   <section class="flex flex-col justify-center items-center w-full px-[20px] gap-[10px] -mt-[40px]">
     <img src="./assets/icon/Logo.png" class="">
-    <form action="" class="w-full flex flex-col gap-[20px]">
+    <!-- <form action="" > -->
+    <div class="w-full flex flex-col gap-[20px]">
       <div class="flex flex-col gap-[5px]">
         <div id="username">
           <h1 class="font-semibold text-s-black text-[20px]">Username</h1>
@@ -35,17 +36,17 @@
 
       <div id="button-group" class="flex flex-col justify-center gap-[10px] w-full">
 
-
-        <button class="w-full p-[10px] rounded-[10px] bg-ijo-500 text-s-white font-medium text-[20px]">MASUK</button>
-
+        <a href="view/admin/JadwalSecurity.php" class="w-full">
+          <button class="w-full p-[10px] rounded-[10px] bg-ijo-500 text-s-white font-medium text-[20px]">MASUK</button>
+        </a>
 
         <a href="./view/mahasiswa/LaporanBarang.php" class="w-full">
           <div class="w-full p-[10px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-medium text-[20px] text-center">Masuk sebagai Mahasiswa</div>
         </a>
 
       </div>
-
-    </form>
+    </div>
+    <!-- </form> -->
     </div>
 
   </section>

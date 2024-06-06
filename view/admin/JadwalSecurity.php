@@ -25,7 +25,7 @@
           </a>
         </section>
         <div class="flex justify-end">
-          <a href="./LaporanPinjamKunci.php">
+          <a href="./TambahSecurity.php">
             <img src="../../assets/sementara/adm-icon-tambahSecurity.svg">
           </a>
         </div>
@@ -52,10 +52,10 @@
             </div>
           </div>
           <div class="flex gap-[5px] w-full">
-            <a href="" class=" w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
+            <a href="EditSecurity.php" class=" w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
               Edit Data
             </a>
-            <a href="" class="w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
+            <a href="EditJadwal.php" class="w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
               Ubah Jadwal
             </a>
           </div>

@@ -12,10 +12,10 @@ module.exports = {
       },
       colors: {
         s: {
+          red: "#CA2535",
           black: "#212121",
           white: "#FBFCFF",
-          grey: "#6F6F6F",
-          red: "#CA2535",
+          grey: "#6F6F6F",          
         },
         "ijo-100": "#E9FFF4",
         "ijo-200": "#A8FFD5",

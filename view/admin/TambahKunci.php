@@ -4,39 +4,39 @@
 <head>
   <?php include '../../tamplate/meta.php'; ?>
   <?php require '../../tamplate/judul.php'; ?>
-  <title>Edit Kunci</title>
+  <title>Tambah Kunci</title>
 </head>
 
 <body>
   <section class="flex flex-col gap-[10px]">
-    <?php judulPath("Edit Kunci", "./ListKunci.php") ?>
+    <?php judulPath("Tambah Kunci", "./ListKunci.php") ?>
 
     <main class="px-[15px] flex flex-col gap-[20px] pb-[15px]">
 
       <div class="flex flex-col gap-[10px]">
-        <h1 class="text-t-black font-semibold text-[18px]">Edit Kunci</h1>
+        <h1 class="text-t-black font-semibold text-[18px]">Tambah Kunci</h1>
 
         <!-- <form action=""> -->
         <div class="flex flex-col gap-[5px]">
 
           <div>
             <h1 class="font-semibold text-s-black text-[15px]">Nama Kunci</h1>
-            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Nama Kunci" value="Kunci Lab Patt 1">
+            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Nama Kunci">
           </div>
 
           <div>
             <h1 class="font-semibold text-s-black text-[15px]">Lokasi</h1>
-            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Lokasi" value="Patt 1, arah Selatan">
+            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Lokasi">
           </div>
 
           <div>
             <h1 class="font-semibold text-s-black text-[15px]">Penganggung Jawab</h1>
-            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Penanggung Jawab" value="Pak Sugeng">
+            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Penanggung Jawab">
           </div>
 
           <div>
             <h1 class="font-semibold text-s-black text-[15px]">Penganggung Jawab</h1>
-            <textarea type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Note untuk Kunci">Mahasiswa harus izin terlebih dahulu</textarea>
+            <textarea type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Note untuk Kunci"></textarea>
           </div>
 
           <div class="flex flex-col gap-1">
@@ -51,7 +51,7 @@
           </div>
 
           <a href="./ListKunci.php" class="w-full">
-            <button class="w-full px-[10px] py-[5px] rounded-[10px] bg-ijo-500 text-s-white font-medium text-[20px]">SIMPAN</button>
+            <button class="w-full px-[10px] py-[5px] rounded-[10px] bg-ijo-500 text-s-white font-medium text-[20px]">TAMBAH</button>
           </a>
 
         </div>

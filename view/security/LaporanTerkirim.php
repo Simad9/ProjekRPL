@@ -17,9 +17,8 @@
           <img src="../../assets/icon/guest-icon-sukses.png" alt="Sukses">
           <p class="font-bold text-xl text-s-black">Laporan Terkirim!</p>
         </div>
-        <p class="font-semibold text-[15px] text-s-black">Tunggu balasan dari kami!</p>
       </section>
-      <a href="./LaporanBarang.php">
+      <a href="./SecurityJaga.php">
         <div class="w-full px-[25px] py-[8px] rounded-[10px] bg-ijo-500 hover:bg-ijo-400 cursor-pointer ">
           <p class="font-semibold text-xl text-s-white">Kembali ke Halaman Awal</p>
         </div>

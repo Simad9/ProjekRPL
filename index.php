@@ -4,7 +4,7 @@ if (isset($_POST["submit"])) {
     header("Location: ./view/admin/JadwalSecurity.php");
     exit();
   } else  if ($_POST["username"] === '123') {
-    header("Location: ./view/security/");
+    header("Location: ./view/security/SecurityJaga.php");
     exit();
   }
 }

@@ -1,15 +1,22 @@
 <?php
+require './model/be_main.php';
+
 if (isset($_POST["submit"])) {
-  if ($_POST["username"] === 'admin') {
-    header("Location: ./view/admin/JadwalSecurity.php");
-    exit();
-  } else  if ($_POST["username"] === '123') {
-    header("Location: ./view/security/SecurityJaga.php");
-    exit();
+  be_login();
+}
+
+if (isset($_GET["status"])) {
+  switch ($_GET["status"]) {
+    case "gagal":
+      echo '<script>
+      alert("Terdapat Kesalahan di Username atau di Password");
+      </script>';
+      break;
   }
 }
-?>
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

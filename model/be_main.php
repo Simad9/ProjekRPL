@@ -27,7 +27,7 @@ function be_login()
       // cek password - sementara
       if ($password == $dataUser['password']) {
         // Ngirim data sesion
-        $_SESSION['id_user'] = $dataUser['id_user'];
+        $_SESSION['id_security'] = $dataUser['id_security'];
 
         // redirect ke halaman homepage
         header("Location: ./view/security/SecurityJaga.php");

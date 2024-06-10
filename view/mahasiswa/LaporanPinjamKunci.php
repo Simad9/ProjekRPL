@@ -42,7 +42,7 @@ if (isset($_GET["status"])) {
 
 <body>
   <section class="flex flex-col gap-[10px]">
-    <?php judulPath("Pinjam Kunci", "./LaporanBarang.php") ?>
+    <?php judulPath("Pinjam Kunci", "./LaporanKunci.php") ?>
 
     <main class="px-[15px] flex flex-col gap-[20px] pb-[15px]">
 

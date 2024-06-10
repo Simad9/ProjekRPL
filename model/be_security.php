@@ -4,8 +4,8 @@ function be_laporanBarang()
 {
   global $koneksi;
 
-  $jenisBarang = $_POST['barang'];
-  $deskripsi = $_POST["note"];
+  $jenisBarang = $_POST['jenis'];
+  $deskripsi = $_POST["deskripsi"];
 
   // Foto logic
   $namaFile = $_FILES['foto']['name'];
@@ -16,13 +16,13 @@ function be_laporanBarang()
   $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
   $ekstensiGambar = pathinfo($namaFile, PATHINFO_EXTENSION);
   if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-    header("Location: laporan_barang.php?status=notImage");
+    header("Location: ?status=notImage");
     exit;
   }
 
   // cek jika ukurannya terlalu besar
   if ($ukuranFile > 2000000) { //ukuran 2mb
-    header("Location: laporan_barang.php?status=bigSize");
+    header("Location: ?status=bigSize");
     exit;
   }
 
@@ -32,21 +32,20 @@ function be_laporanBarang()
   $namaFileBaru .= $ekstensiGambar;
 
   // move file ke folder
-  if (!move_uploaded_file($tmpNama, "../../img/laporan/" . $namaFileBaru)) {
+  if (!move_uploaded_file($tmpNama, "../../img/laporanBarang/" . $namaFileBaru)) {
     // file tidak pindah, ERROR
-    header("Location: laporan_barang.php?status=gagal");
+    header("Location: ?status=gagal");
     exit();
   }
 
-
-  $query = "INSERT INTO `lap_barang` (`id_lapBarang`, `namaBarang`, `tanggal`, `deskripsi`, `fotoBarang`) VALUES (NULL, '$jenisBarang', current_timestamp(), '$deskripsi', '$namaFileBaru')";
+  $query = "INSERT INTO `lap_barang` (`jenisBarang`, `deskripsi`, `urlFoto`) VALUES ('$jenisBarang', '$deskripsi', '$namaFileBaru')";
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: homepage.php?status=berhasilBarang");
+    header("location: LaporanTerkirim.php");
     exit();
   } else {
-    header("location:laporan_barang.php?status=gagal");
+    header("location:?status=gagal");
     exit();
   }
 }
@@ -58,55 +57,20 @@ function be_updateDataPersonal()
 
   $id_security = $_POST['id_security'];
   $nama = $_POST['nama'];
-  $tgl_lhr = $_POST["tgl"];
-  $alamat = $_POST["alamat"];
-  $NoHp = $_POST["NoHp"];
+  $noHp = $_POST["nohp"];
+  $username = $_POST["username"];
+  $password = $_POST["password"];
 
   $query = "UPDATE security
-  SET nama = '$nama', tgl_lhr= '$tgl_lhr', alamat = '$alamat', noHp = '$NoHp'
+  SET nama = '$nama', noHp = '$noHp', username = '$username', password = '$password'
   WHERE id_security = $id_security;";
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: profile.php?status=updateProfile");
+    header("location: FiturTambahan.php?status=updateProfile");
     exit();
   } else {
-    header("location:laporan_barang.php?status=gagal");
-    exit();
-  }
-}
-
-// Update akun
-function be_updateAkun()
-{
-  global $koneksi;
-
-  $id_user = $_POST['id_user'];
-  $username = $_POST['username'];
-  $email = $_POST["email"];
-  $passwordLama = $_POST["passwordLama"];
-  $passwordBaru = $_POST["passwordBaru"];
-
-  // Logic password
-  $queryPassword = "SELECT password FROM user WHERE id_user = $id_user";
-  $resultPassword = mysqli_query($koneksi, $queryPassword);
-  $dataPassword = mysqli_fetch_assoc($resultPassword);
-  $paswordLamaDB = $dataPassword['password'];
-  if ($paswordLamaDB == $passwordLama) {
-    $query = "UPDATE user
-    SET username = '$username', email= '$email', password = '$passwordBaru', passwordLama = '$passwordLama'
-    WHERE id_user = $id_user;";
-    $hasil = mysqli_query($koneksi, $query);
-  } else {
-    header("location:profile_pengaturanAkun.php?status=passwordLama");
-    exit();
-  }
-
-  if ($hasil) {
-    header("location: profile.php?status=updateAkun");
-    exit();
-  } else {
-    header("location:laporan_barang.php?status=gagal");
+    header("location: ?status=gagal");
     exit();
   }
 }
@@ -171,6 +135,45 @@ function be_selesaiJaga()
     exit();
   } else {
     header("location: homepage.php?status=gagal");
+    exit();
+  }
+}
+
+// PEMINJAMAN KUNCI
+function be_tolakKunci()
+{
+
+  global $koneksi;
+
+  $id_pinjamKunci = $_POST['id_pinjamKunci'];
+  $query = "DELETE FROM lap_pinjamKunci
+  WHERE id_pinjamKunci = $id_pinjamKunci;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: ?status=tolakKunci");
+    exit();
+  } else {
+    header("location: ?status=gagal");
+    exit();
+  }
+}
+
+function be_terimaKunci()
+{
+  global $koneksi;
+
+  $id_pinjamKunci = $_POST['id_pinjamKunci'];
+  $query = "UPDATE lap_pinjamKunci
+  SET diizinkan = '1'
+  WHERE id_pinjamKunci = $id_pinjamKunci;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: ?status=terimaKunci");
+    exit();
+  } else {
+    header("location: ?status=gagal");
     exit();
   }
 }

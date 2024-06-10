@@ -33,22 +33,24 @@ $hasil = mysqli_query($koneksi, $query);
 
       <?php
       if (mysqli_num_rows($hasil) > 0) :
-        while ($data = mysqli_fetch_assoc($hasil)) :  ?>
+        while ($data = mysqli_fetch_assoc($hasil)) :
+          $data['tanggal'] = explode(' ', $data['tanggalWaktu'])[0];
+      ?>
           <!-- Listnya -->
           <section class="p-[10px] bg-ijo-500 rounded-[10px]">
             <div class="flex justify-between items-center text-s-white mb-2">
-              <h1 class="font-semibold text-[15px]">Kunci Motor</h1>
-              <h2 class="font-normal text-[10px]">06/04/2024</h2>
+              <h1 class="font-semibold text-[15px]"><?= $data['jenisBarang'] ?></h1>
+              <h2 class="font-normal text-[10px]"><?= $data['tanggal'] ?></h2>
             </div>
             <div class="flex gap-[5px]">
-              <img src="../../img/kehilangan/" alt="" class="w-[64px] h-[64px] bg-s-grey">
+              <img src="../../img/laporanBarang/<?= $data['urlFoto'] ?>" alt="foto barang" class="w-[64px] h-[64px] bg-s-grey">
               <div class="text-[10px] text-s-white">
                 <h1 class="font-semibold">Deskripsi ditemukan : </h1>
-                <p class="font-medium">Ditemukan di motor AB xxx</p>
+                <p class="font-medium shrink"><?= $data['deskripsi'] ?></p>
               </div>
             </div>
             <div class="w-full flex justify-end">
-              <a href="./LaporanKehilangan.php" class="px-[15px] py-[2px] border border-ijo-500 bg-s-white text-center text-semibold text-ijo-500 text-[13px] rounded-[8px]">
+              <a href="./LaporanKehilangan.php?idLapBarang=<?= $data['id_lapBarang'] ?>" class="px-[15px] py-[2px] border border-ijo-500 bg-s-white text-center text-semibold text-ijo-500 text-[13px] rounded-[8px]">
                 Lapor
               </a>
             </div>

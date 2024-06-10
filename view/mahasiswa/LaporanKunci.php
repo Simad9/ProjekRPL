@@ -4,7 +4,7 @@ require '../../model/be_main.php';
 $query = "SELECT *, kunci.nama as 'nama_kunci', mahasiswa.nama as 'nama_mhs' FROM lap_pinjamKunci
 INNER JOIN kunci ON lap_pinjamKunci.id_kunci = kunci.id_kunci
 INNER JOIN mahasiswa ON lap_pinjamKunci.id_mhs = mahasiswa.id_mhs
-";
+WHERE diizinkan = 1";
 $hasil = mysqli_query($koneksi, $query);
 
 ?>
@@ -53,7 +53,7 @@ $hasil = mysqli_query($koneksi, $query);
               <h2 class="font-normal text-[10px]"><?= $data['tanggal'] ?></h2>
             </div>
             <div class="flex gap-[5px]">
-              <img src="../../img/kunci/<?= $data['urlFoto'] ?>" alt="" class="w-[64px] h-[64px] bg-s-grey">
+              <img src="../../img/kunci/<?= $data['urlFoto'] ?>" alt="foto kunci" class="w-[64px] h-[64px] bg-s-grey">
               <div class="text-[10px] text-s-white">
                 <h1 class="font-semibold">Nama : <?= $data['nama_mhs'] ?> </h1>
                 <h1 class="font-semibold">Jurusan : <?= $data['jurusan'] ?></h1>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require './model/be_main.php';
 
 if (isset($_POST["submit"])) {

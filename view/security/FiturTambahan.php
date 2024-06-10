@@ -1,3 +1,19 @@
+<?php
+if (isset($_GET["status"])) {
+  switch ($_GET["status"]) {
+    case "gagal":
+      echo '<script>
+      alert("ada yang salah");
+      </script>';
+      break;
+    case "updateProfile":
+      echo '<script>
+      alert("berhasil update profile");
+      </script>';
+      break;
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

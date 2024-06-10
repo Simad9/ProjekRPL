@@ -16,13 +16,18 @@
     <main class="px-[15px] flex flex-col gap-[20px]">
       <div class="flex flex-col gap-[5px]">
         <h1 class="text-t-black font-semibold text-[18px]">Fitur Kami</h1>
-        <section class="flex gap-[5px]">
-          <a href="./JadwalSecurity.php">
-            <img src="../../assets/sementara/adm-icon-jadwalSecurity-off.svg">
-          </a>
-          <div>
-            <img src="../../assets/sementara/adm-icon-listKunci.svg">
+        <section class="flex justify-between items-center">
+          <div class="flex gap-[5px]">
+            <a href="./JadwalSecurity.php">
+              <img src="../../assets/sementara/adm-icon-jadwalSecurity-off.svg">
+            </a>
+            <div>
+              <img src="../../assets/sementara/adm-icon-listKunci.svg">
+            </div>
           </div>
+          <a href="../../">
+            <img src="../../assets/sementara/adm-icon-tombolKeluar.svg">
+          </a>
         </section>
       </div>
       <div class="flex justify-end">

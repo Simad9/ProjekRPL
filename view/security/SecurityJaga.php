@@ -49,6 +49,12 @@
               <p class="font-semibold text-xl text-s-black">Tambahan</p>
             </div>
           </a>
+          <a href="../../">
+            <div class="w-full  text-center px-[25px] py-[5px] rounded-[10px] bg-s-white border border-s-red cursor-pointer ">
+              <p class="font-semibold text-xl text-s-red">Keluar</p>
+            </div>
+          </a>
+
         </div>
       </div>
 

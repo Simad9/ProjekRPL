@@ -80,8 +80,8 @@ function be_fetchIdSecurity()
 {
   global $koneksi;
 
-  $id_user = $_SESSION['id_user'];
-  $query = "SELECT id_security FROM security WHERE id_user = $id_user";
+  $id_security = $_SESSION['id_security'];
+  $query = "SELECT id_security FROM security WHERE id_security = $id_security";
   $hasil = mysqli_query($koneksi, $query);
   $data = mysqli_fetch_assoc($hasil);
 
@@ -140,6 +140,7 @@ function be_selesaiJaga()
 }
 
 // PEMINJAMAN KUNCI
+// Ditolak Perizinan
 function be_tolakKunci()
 {
 
@@ -159,6 +160,7 @@ function be_tolakKunci()
   }
 }
 
+// Diterima Perizinan
 function be_terimaKunci()
 {
   global $koneksi;
@@ -171,6 +173,64 @@ function be_terimaKunci()
 
   if ($hasil) {
     header("location: ?status=terimaKunci");
+    exit();
+  } else {
+    header("location: ?status=gagal");
+    exit();
+  }
+}
+
+// Laporan Selesai
+function hapusLapKehilangan($id_lapKehilangan, $urlBukti, $id_lapBarang, $urlBarang, $id_mhs)
+{
+  global $koneksi;
+
+  // hapus file kehilangan Barang
+  $fileLokasi = "../../img/laporanKehilangan/$urlBukti";
+  unlink($fileLokasi);
+
+  // hapus lporan kehilangan
+  $query = "DELETE FROM lap_kehilangan
+  WHERE id_lapKehilangan = $id_lapKehilangan;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  // hapus file laporan Barang
+  $fileLokasi = "../../img/laporanBarang/$urlBarang";
+  unlink($fileLokasi);
+
+  // hapus lporan barang
+  $query = "DELETE FROM lap_barang
+   WHERE id_lapBarang = $id_lapBarang;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  // hapus data mahasiswa
+  $query = "DELETE FROM mahasiswa
+  WHERE id_mhs = $id_mhs;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: LaporanKehilangan.php?status=terhapus");
+    exit();
+  } else {
+    header("location: ?status=gagal");
+    exit();
+  }
+}
+
+// Request Jadwal
+function requestJadwal()
+{
+  global $koneksi;
+
+  $id_security = $_POST['id_security'];
+  $id_securityTeman = $_POST["id_rekan"];
+  $alasan = $_POST["alasan"];
+
+  $query = "INSERT INTO lap_reqJadwal (id_security, id_securityTeman, alasan) VALUES ('$id_security', '$id_securityTeman', '$alasan');";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: LaporanTerkirim.php");
     exit();
   } else {
     header("location: ?status=gagal");

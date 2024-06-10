@@ -4,7 +4,7 @@ require '../../model/be_main.php';
 $query = "SELECT *, kunci.nama as 'nama_kunci', mahasiswa.nama as 'nama_mhs' FROM lap_pinjamKunci
 INNER JOIN kunci ON lap_pinjamKunci.id_kunci = kunci.id_kunci
 INNER JOIN mahasiswa ON lap_pinjamKunci.id_mhs = mahasiswa.id_mhs
-WHERE diizinkan = 0";
+WHERE diizinkan is NULL OR diizinkan = 0";
 $hasil = mysqli_query($koneksi, $query);
 
 if (isset($_POST["tolak"])) {

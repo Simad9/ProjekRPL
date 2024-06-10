@@ -1,3 +1,19 @@
+<?php
+require '../../model/be_main.php';
+
+$id_security = $_GET["id_security"];
+$query = "SELECT * FROM `security` WHERE id_security = '$id_security'";
+$hasil = mysqli_query($koneksi, $query);
+$data = mysqli_fetch_assoc($hasil);
+
+if (isset($_POST['simpan'])) {
+  be_updateDataPersonal();
+} else if (isset($_POST['hapus'])) {
+  // hapus data nanti, biar secure hapus yang bersangkutan
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,42 +32,42 @@
       <div class="flex flex-col gap-[10px]">
         <h1 class="text-t-black font-semibold text-[18px]"> Edit Security</h1>
 
-        <!-- <form action=""> -->
-        <div class="flex flex-col gap-[10px]">
+        <form action="" method="post">
+          <div class="flex flex-col gap-[10px]">
 
-          <div>
-            <h1 class="font-semibold text-s-black text-[15px]">Nama</h1>
-            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Nama Security" value="Wijdan">
+            <div>
+              <h1 class="font-semibold text-s-black text-[15px]">Nama</h1>
+              <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Nama Security" value="<?= $data['nama'] ?>">
+            </div>
+
+            <div>
+              <h1 class="font-semibold text-s-black text-[15px]">No Hp</h1>
+              <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan No Hp Security" value="<?= $data['noHp'] ?>">
+            </div>
+
+            <div>
+              <h1 class="font-semibold text-s-black text-[15px]">Username</h1>
+              <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Username Security Sementara" value="<?= $data['username'] ?>">
+            </div>
+
+            <div>
+              <h1 class="font-semibold text-s-black text-[15px]">Password</h1>
+              <input type="password" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Password Security Sementara" value="<?= $data['password'] ?>">
+            </div>
+
+            <div>
+              <a href="./JadwalSecurity.php" class="w-full">
+                <button type="submit" name="simpan" class="w-full px-[10px] py-[5px] rounded-[10px] bg-ijo-500 text-s-white font-medium text-[20px]">SIMPAN</button>
+              </a>
+            </div>
+
+            <div>
+              <button type="submit" name="hapus" class="w-full px-[10px] py-[5px] rounded-[10px] bg-s-red text-s-white font-medium text-[20px]">HAPUS</button>
+            </div>
+
+
           </div>
-
-          <div>
-            <h1 class="font-semibold text-s-black text-[15px]">No Hp</h1>
-            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan No Hp Security" value="082135322025">
-          </div>
-
-          <div>
-            <h1 class="font-semibold text-s-black text-[15px]">Username</h1>
-            <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Username Security Sementara" value="123">
-          </div>
-
-          <div>
-            <h1 class="font-semibold text-s-black text-[15px]">Password</h1>
-            <input type="password" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Masukan Password Security Sementara" value="123">
-          </div>
-
-          <div>
-            <a href="./JadwalSecurity.php" class="w-full">
-              <button class="w-full px-[10px] py-[5px] rounded-[10px] bg-ijo-500 text-s-white font-medium text-[20px]">SIMPAN</button>
-            </a>
-          </div>
-
-          <div>
-            <button class="w-full px-[10px] py-[5px] rounded-[10px] bg-s-red text-s-white font-medium text-[20px]">HAPUS</button>
-          </div>
-
-
-        </div>
-        <!-- </form> -->
+        </form>
       </div>
 
 

@@ -729,7 +729,16 @@ video {
 }
 
 .border-s-black {
+  --tw-border-opacity: 1;
   border-color: rgb(33 33 33 / var(--tw-border-opacity));
+}
+
+.border-s-red {
+  --tw-border-opacity: 1;
+  border-color: rgb(202 37 53 / var(--tw-border-opacity));
+}
+
+.border-s-black {
   --tw-border-opacity: 1;
   border-inline-start-color: rgb(0 0 0 / var(--tw-border-opacity));
 }

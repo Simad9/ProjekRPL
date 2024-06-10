@@ -49,7 +49,7 @@ if (isset($_GET["status"])) {
           </a>
           <a href="./EditProfile.php">
             <div class="w-full  text-center px-[25px] py-[5px] rounded-[10px] bg-s-white border border-ijo-500  cursor-pointer ">
-              <p class="font-semibold text-xl text-s-black">EditProfile</p>
+              <p class="font-semibold text-xl text-s-black">Edit Profile</p>
             </div>
           </a>
         </div>

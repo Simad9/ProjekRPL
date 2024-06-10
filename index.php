@@ -1,4 +1,9 @@
 <?php
+// Untuk logout
+session_start();
+session_destroy();
+
+// mulai lagi
 session_start();
 require './model/be_main.php';
 

@@ -76,9 +76,10 @@ function be_laporanKehilangan()
 
   // Ambil ID lapBarang
   $id_lapBarang = $_POST["id_lapBarang"];
+  $bukti = $_POST["bukti"];
 
   // Masuk ke DB
-  $query = "INSERT INTO `lap_kehilangan` (`urlFoto`, `id_lapBarang`, `id_mhs`) VALUES ('$namaFileBaru', '$id_lapBarang', '$id_mhs')";
+  $query = "INSERT INTO `lap_kehilangan` (`urlFoto`,`bukti`, `id_lapBarang`, `id_mhs`) VALUES ('$namaFileBaru','$bukti','$id_lapBarang', '$id_mhs')";
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {

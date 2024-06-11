@@ -7,6 +7,7 @@ $query = "SELECT * FROM security";
 $hasil = mysqli_query($koneksi, $query);
 
 $id_security = be_fetchIdSecurity();
+$nama_security = be_fetchNameSecurity();
 
 if (isset($_POST["submit"])) {
   requestJadwal();
@@ -53,10 +54,10 @@ if (isset($_GET["status"])) {
               </div>
             </div>
 
-            <!-- <div>
+            <div>
               <h1 class="font-semibold text-s-black text-[15px]">Nama</h1>
-              <input type="text" name="nama" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Isikan Nama Anda">
-            </div> -->
+              <input type="text" name="nama" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full" placeholder="Isikan Nama Anda" value="<?= $nama_security?>" readonly="readonly">
+            </div>
 
             <div>
               <h1 class="font-semibold text-s-black text-[15px]">Nama Teman Penganti</h1>

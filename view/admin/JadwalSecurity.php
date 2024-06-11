@@ -3,9 +3,35 @@ require '../../model/be_main.php';
 
 $query = "SELECT * FROM lap_jaga
 INNER JOIN security ON lap_jaga.id_security = security.id_security
-INNER JOIN jadwal ON lap_jaga.id_jadwal = jadwal.id_jadwal";
+LEFT JOIN jadwal ON lap_jaga.id_jadwal = jadwal.id_jadwal";
 $hasil = mysqli_query($koneksi, $query);
 
+
+// notif
+if (isset($_GET["status"])) {
+  switch ($_GET["status"]) {
+    case "securityDiupdate":
+      echo '<script>
+      alert("Berhasil Update jadwal security");
+      </script>';
+      break;
+    case "laporanReqDihapus":
+      echo '<script>
+        alert("Laporan Request Dihapus");
+        </script>';
+      break;
+    case "securityDitambah":
+      echo '<script>
+          alert("Berhasil tambah security");
+          </script>';
+      break;
+    case "securityDihapus":
+      echo '<script>
+            alert("Security dihapus");
+            </script>';
+      break;
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +92,9 @@ $hasil = mysqli_query($koneksi, $query);
             case 3:
               $jadwal = "22:00 s/d 07:00";
               break;
+            default:
+              $jadwal = "-";
+              break;
           }
         ?>
           <!-- Isi -->
@@ -83,7 +112,7 @@ $hasil = mysqli_query($koneksi, $query);
               <a href="EditSecurity.php?id_security=<?= $data['id_security'] ?>" class=" w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
                 Edit Data
               </a>
-              <a href="EditJadwal.php" class="w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
+              <a href="EditJadwal.php?id_security=<?= $data['id_security'] ?>" class="w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
                 Ubah Jadwal
               </a>
             </div>

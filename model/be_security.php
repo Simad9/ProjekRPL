@@ -88,6 +88,19 @@ function be_fetchIdSecurity()
   return $data['id_security'];
 }
 
+//  Fetch Name Security 
+function be_fetchNameSecurity()
+{
+  global $koneksi;
+
+  $id_security = $_SESSION['id_security'];
+  $query = "SELECT nama FROM security WHERE id_security = $id_security";
+  $hasil = mysqli_query($koneksi, $query);
+  $data = mysqli_fetch_assoc($hasil);
+
+  return $data['nama'];
+}
+
 // Mulai Jaga
 function be_mulaiJaga()
 {

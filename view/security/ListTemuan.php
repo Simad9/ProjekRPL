@@ -28,7 +28,7 @@ $hasil = mysqli_query($koneksi, $query);
           <section class="p-[10px] bg-ijo-500 rounded-[10px]">
             <div class="flex justify-between items-center text-s-white mb-2">
               <h1 class="font-semibold text-[15px]"><?= $data['jenisBarang'] ?></h1>
-              <h2 class="font-normal text-[10px]"><?= $data['tanggal'] ?></h2>
+              <h2 class="font-normal text-[10px]"><?= tampilanTanggal($data['tanggal']) ?></h2>
             </div>
             <div class="flex gap-[5px] w-full">
               <div class="aspect-[1/1] w-[64px]">

@@ -28,7 +28,7 @@ if (isset($_POST["submit"])) {
           <div>
             <h1 class="font-semibold text-s-black text-[15px]">Tanggal dan Waktu</h1>
             <div class="flex gap-[5px]">
-              <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full  text-center" value="<?= $tanggal_sekarang ?>" readonly="readonly">
+              <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full  text-center" value="<?= tampilanTanggal($tanggal_sekarang) ?>" readonly="readonly">
               <input type="text" class="px-[15px] py-[5px] border border-s-black rounded-[8px] w-full  text-center" value="<?= $waktu_sekarang ?>" readonly="readonly">
             </div>
           </div>

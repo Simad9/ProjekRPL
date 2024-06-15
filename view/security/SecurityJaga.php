@@ -105,7 +105,7 @@ if ($bisaJaga) {
         <div class="flex flex-col gap-[5px] border border-ijo-500 p-[10px] rounded-[10px]">
           <div class="flex justify-between items-center">
             <h1 class="text-t-black font-semibold text-[15px]">Yang Berjaga</h1>
-            <h1 class="text-t-black font-semibold text-[10px]"><?= $tanggal_sekarang ?></h1>
+            <h1 class="text-t-black font-semibold text-[10px]"><?= tampilanTanggal($tanggal_sekarang) ?></h1>
           </div>
           <div class="text-center">
             <?php
@@ -114,7 +114,7 @@ if ($bisaJaga) {
                 // echo $penjaga['nama'] . " (Mulai: " . $penjaga['jamMulai'] . " - Akhir: " . $penjaga['jamAkhir'] . ")<br>";
             ?>
                 <h1 class="text-t-black font-bold text-[20px]"><?= $penjaga['nama']  ?></h1>
-                <h2 class="text-t-black font-medium text-[20px]"><?= $penjaga['jamMulai'] ?> s/d <?= $penjaga['jamAkhir'] ?></h2>
+                <h2 class="text-t-black font-medium text-[20px]"><?= ubahFormatJam($penjaga['jamMulai']) ?> s/d <?= ubahFormatJam($penjaga['jamAkhir']) ?></h2>
             <?php
               }
             }

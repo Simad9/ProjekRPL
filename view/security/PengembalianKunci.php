@@ -49,7 +49,7 @@ if (isset($_GET["status"])) {
     <?php judulPath("Perizinan Kunci", "./FiturTambahan.php") ?>
 
     <main class="px-[15px] flex flex-col gap-[10px]">
-      <h1 class="text-t-black font-semibold text-[18px]">Laporan Perizinan Kunci</h1>
+      <h1 class="text-t-black font-semibold text-[18px]">Laporan Pengembalian Kunci</h1>
 
       <?php
       if (mysqli_num_rows($hasil) > 0) :
@@ -59,7 +59,7 @@ if (isset($_GET["status"])) {
           <section class="p-[10px] bg-ijo-500 rounded-[10px] flex flex-col gap-[5px]">
             <div class="flex justify-between items-center text-s-white mb-2">
               <h1 class="font-semibold text-[15px]"><?= $data['nama_kunci'] ?></h1>
-              <h2 class="font-normal text-[10px]"><?= tampilanTanggal($data['tanggal']) ?></h2>
+              <h2 class="font-normal text-[10px]"><?= $data['tanggal'] ?></h2>
             </div>
 
             <div class="flex gap-[5px] w-full">
@@ -79,10 +79,10 @@ if (isset($_GET["status"])) {
 
               <div class="flex gap-[5px] w-full">
                 <button type="submit" name="tolak" class=" w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-s-red font-semibold text-[15px] text-center">
-                  Tolak
+                  Hubungi
                 </button>
-                <button type="submit" name="terima" class="w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
-                  Izinkan
+                <button type="submit" name="dibalikan" class="w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
+                  Dibalikan
                 </button>
               </div>
 

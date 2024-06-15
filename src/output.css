@@ -594,6 +594,14 @@ video {
   margin-top: 5rem;
 }
 
+.mb-\[300px\] {
+  margin-bottom: 300px;
+}
+
+.mb-\[200px\] {
+  margin-bottom: 200px;
+}
+
 .flex {
   display: flex;
 }
@@ -627,10 +635,6 @@ video {
   height: 100%;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .w-\[100px\] {
   width: 100px;
 }
@@ -645,6 +649,10 @@ video {
 
 .shrink {
   flex-shrink: 1;
+}
+
+.cursor-none {
+  cursor: none;
 }
 
 .cursor-pointer {
@@ -828,6 +836,10 @@ video {
 
 .pb-\[15px\] {
   padding-bottom: 15px;
+}
+
+.pb-\[300px\] {
+  padding-bottom: 300px;
 }
 
 .text-center {

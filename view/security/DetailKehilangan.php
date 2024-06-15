@@ -46,7 +46,7 @@ if (isset($_GET["hapus"])) {
             <section class="flex flex-col gap-[5px] p-[10px] bg-ijo-500 rounded-[5px]">
               <div class="flex justify-between items-center text-s-white">
                 <h1 class="font-semibold text-[15px]"><?= $data['jenisBarang'] ?></h1>
-                <h1 class="font-normal text-[10px]"><?= $data['tanggal'] ?></h1>
+                <h1 class="font-normal text-[10px]"><<?= tampilanTanggal($data['tanggal']) ?>></h1>
               </div>
               <div class="flex gap-[5px] w-full">
                 <div class="aspect-[1/1] w-[64px]">

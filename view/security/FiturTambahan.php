@@ -42,6 +42,11 @@ if (isset($_GET["status"])) {
               <p class="font-semibold text-xl text-s-black">Perizinan Pinjaman Kunci</p>
             </div>
           </a>
+          <a href="./PengembalianKunci.php">
+            <div class="w-full  text-center px-[25px] py-[5px] rounded-[10px] bg-s-white border border-ijo-500  cursor-pointer ">
+              <p class="font-semibold text-xl text-s-black">Pengembalian Kunci</p>
+            </div>
+          </a>
           <a href="./RequestJadwal.php">
             <div class="w-full  text-center px-[25px] py-[5px] rounded-[10px] bg-s-white border border-ijo-500  cursor-pointer ">
               <p class="font-semibold text-xl text-s-black">Request Jadwal</p>

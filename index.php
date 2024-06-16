@@ -1,4 +1,9 @@
 <?php
+// Untuk logout
+session_start();
+session_destroy();
+
+// mulai lagi
 session_start();
 require './model/be_main.php';
 
@@ -16,7 +21,6 @@ if (isset($_GET["status"])) {
   }
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,9 +37,9 @@ if (isset($_GET["status"])) {
   <title>Security App</title>
 </head>
 
-<body class="flex flex-col bg-s-white w-full h-screen">
+<body class="flex flex-col bg-s-white w-full md:w-5/12 md:m-auto border border-s-black border-e-black">
   <img src="./assets/icon/hiasan bg.png" class="w-full">
-  <section class="flex flex-col justify-center items-center w-full px-[20px] gap-[10px] -mt-[40px]">
+  <section class="flex flex-col justify-center items-center w-full px-[20px] gap-[10px] -mt-[80px] mb-36">
     <img src="./assets/icon/Logo.png" class="">
 
     <form action="" method="post" class="w-full flex flex-col gap-[20px]">

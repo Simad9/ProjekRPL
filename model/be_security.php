@@ -80,69 +80,67 @@ function be_fetchIdSecurity()
 {
   global $koneksi;
 
-  $id_user = $_SESSION['id_user'];
-  $query = "SELECT id_security FROM security WHERE id_user = $id_user";
+  $id_security = $_SESSION['id_security'];
+  $query = "SELECT id_security FROM security WHERE id_security = $id_security";
   $hasil = mysqli_query($koneksi, $query);
   $data = mysqli_fetch_assoc($hasil);
 
   return $data['id_security'];
 }
 
-// Mulai Jaga
-function be_mulaiJaga()
+//  Fetch Name Security 
+function be_fetchNameSecurity()
 {
   global $koneksi;
 
-  $id_security = $_POST['id_security'];
-  $id_jadwal = $_POST["id_jadwal"];
-
-  $query = "INSERT INTO `lap_shift` (`id_lapShift`, `id_security`, `id_jadwal`, `id_lapBarang`, `waktuMulai`, `waktuSelesai`, `note`) VALUES (NULL, '$id_security', '$id_jadwal', NULL, current_timestamp(), NULL, NULL);";
+  $id_security = $_SESSION['id_security'];
+  $query = "SELECT nama FROM security WHERE id_security = $id_security";
   $hasil = mysqli_query($koneksi, $query);
-  echo "tai";
-  die;
+  $data = mysqli_fetch_assoc($hasil);
+
+  return $data['nama'];
+}
+
+// Mulai Jaga
+function be_mulaiJaga($id_security)
+{
+  global $koneksi;
+
+  echo $id_security;
+
+  $query = "UPDATE lap_jaga SET statusJaga = 'berjaga', waktuMulai = current_timestamp(), waktuSelesai = NULL WHERE id_security = $id_security;";
+  $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: homepage.php?status=berhasil");
+    header("location: SecurityJaga.php");
     exit();
   } else {
-    header("location: homepage.php?status=gagal");
+    header("location: ?status=gagal");
     exit();
   }
 }
 
 // selesai Jaga
-function be_selesaiJaga()
+function be_selesaiJaga($id_security)
 {
   global $koneksi;
 
-  $id_security = $_POST['id_security'];
-  $id_lapBarang = $_POST["id_lapBarang"] ? $_POST["id_lapBarang"] : null;
-  $note = $_POST["note"] ? $_POST["note"] : null;
-
-  $query = "UPDATE lap_shift
-  SET id_lapBarang = '$id_lapBarang', waktuSelesai = current_timestamp(), note = '$note'
-  WHERE id_security = $id_security;";
-  $hasil = mysqli_query($koneksi, $query);
-
-  $id_jadwal = $_POST["id_jadwal"] + 1;
-  $query = "UPDATE jadwal_security 
-  SET id_jadwal = '$id_jadwal' 
-  WHERE id_security = '$id_security';";
+  $query = "UPDATE lap_jaga SET statusJaga = NULL, waktuSelesai = current_timestamp() WHERE id_security = $id_security;";
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: homepage.php?status=beresJaga");
+    header("location: SecurityJaga.php");
     exit();
   } else {
-    header("location: homepage.php?status=gagal");
+    header("location: ?status=gagal");
     exit();
   }
 }
 
 // PEMINJAMAN KUNCI
+// Ditolak Perizinan
 function be_tolakKunci()
 {
-
   global $koneksi;
 
   $id_pinjamKunci = $_POST['id_pinjamKunci'];
@@ -159,6 +157,7 @@ function be_tolakKunci()
   }
 }
 
+// Diterima Perizinan
 function be_terimaKunci()
 {
   global $koneksi;
@@ -171,6 +170,83 @@ function be_terimaKunci()
 
   if ($hasil) {
     header("location: ?status=terimaKunci");
+    exit();
+  } else {
+    header("location: ?status=gagal");
+    exit();
+  }
+}
+
+// Diterima Perizinan
+function be_kunciKembali()
+{
+  global $koneksi;
+
+  $id_pinjamKunci = $_POST['id_pinjamKunci'];
+  $query = "DELETE FROM lap_pinjamKunci
+  WHERE id_pinjamKunci = $id_pinjamKunci;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: ?status=kunciBalik");
+    exit();
+  } else {
+    header("location: ?status=gagal");
+    exit();
+  }
+}
+
+// Laporan Selesai
+function hapusLapKehilangan($id_lapKehilangan, $urlBukti, $id_lapBarang, $urlBarang, $id_mhs)
+{
+  global $koneksi;
+
+  // hapus file kehilangan Barang
+  $fileLokasi = "../../img/laporanKehilangan/$urlBukti";
+  unlink($fileLokasi);
+
+  // hapus lporan kehilangan
+  $query = "DELETE FROM lap_kehilangan
+  WHERE id_lapKehilangan = $id_lapKehilangan;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  // hapus file laporan Barang
+  $fileLokasi = "../../img/laporanBarang/$urlBarang";
+  unlink($fileLokasi);
+
+  // hapus lporan barang
+  $query = "DELETE FROM lap_barang
+   WHERE id_lapBarang = $id_lapBarang;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  // hapus data mahasiswa
+  $query = "DELETE FROM mahasiswa
+  WHERE id_mhs = $id_mhs;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: LaporanKehilangan.php?status=terhapus");
+    exit();
+  } else {
+    header("location: ?status=gagal");
+    exit();
+  }
+}
+
+// Request Jadwal
+function requestJadwal()
+{
+  global $koneksi;
+
+  $id_security = $_POST['id_security'];
+  $id_securityTeman = $_POST["id_rekan"];
+  $alasan = $_POST["alasan"];
+
+  $query = "INSERT INTO lap_reqJadwal (id_security, id_securityTeman, alasan) VALUES ('$id_security', '$id_securityTeman', '$alasan');";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: LaporanTerkirim.php");
     exit();
   } else {
     header("location: ?status=gagal");

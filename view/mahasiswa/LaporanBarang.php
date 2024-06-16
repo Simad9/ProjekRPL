@@ -14,11 +14,10 @@ $hasil = mysqli_query($koneksi, $query);
   <title>Pelaporan Barang</title>
 </head>
 
-<body>
-  <section class="flex flex-col gap-[10px]">
+<body class=" md:w-5/12 md:m-auto border border-s-black border-e-black">
+  <section class="flex flex-col gap-[10px] h-screen ">
     <?php judulPath("Pelaporan Barang", "../../index.php") ?>
-
-    <main class="px-[15px] flex flex-col gap-[20px]">
+    <main class="px-[15px] flex flex-col gap-[20px] bg-white">
       <div class="flex flex-col gap-[5px]">
         <h1 class="text-t-black font-semibold text-[18px]">Fitur Kami</h1>
         <section class="flex gap-[5px]">
@@ -40,7 +39,7 @@ $hasil = mysqli_query($koneksi, $query);
           <section class="p-[10px] bg-ijo-500 rounded-[10px]">
             <div class="flex justify-between items-center text-s-white mb-2">
               <h1 class="font-semibold text-[15px]"><?= $data['jenisBarang'] ?></h1>
-              <h2 class="font-normal text-[10px]"><?= $data['tanggal'] ?></h2>
+              <h2 class="font-normal text-[10px]"><?= tampilanTanggal($data['tanggal']) ?></h2>
             </div>
             <div class="flex gap-[5px]">
               <img src="../../img/laporanBarang/<?= $data['urlFoto'] ?>" alt="foto barang" class="w-[64px] h-[64px] bg-s-grey">

@@ -23,8 +23,8 @@ if (isset($_GET["status"])) {
   <title>Fitur Tambahan</title>
 </head>
 
-<body>
-  <section class="flex flex-col gap-[10px]">
+<body class=" md:w-5/12 md:m-auto border border-s-black border-e-black">
+  <section class="flex flex-col gap-[10px] h-screen">
     <?php judulPath("Fitur Tambahan", "./SecurityJaga.php") ?>
 
     <main class="px-[15px] flex flex-col gap-[20px] pb-[15px]">
@@ -42,6 +42,11 @@ if (isset($_GET["status"])) {
               <p class="font-semibold text-xl text-s-black">Perizinan Pinjaman Kunci</p>
             </div>
           </a>
+          <a href="./PengembalianKunci.php">
+            <div class="w-full  text-center px-[25px] py-[5px] rounded-[10px] bg-s-white border border-ijo-500  cursor-pointer ">
+              <p class="font-semibold text-xl text-s-black">Pengembalian Kunci</p>
+            </div>
+          </a>
           <a href="./RequestJadwal.php">
             <div class="w-full  text-center px-[25px] py-[5px] rounded-[10px] bg-s-white border border-ijo-500  cursor-pointer ">
               <p class="font-semibold text-xl text-s-black">Request Jadwal</p>
@@ -49,7 +54,7 @@ if (isset($_GET["status"])) {
           </a>
           <a href="./EditProfile.php">
             <div class="w-full  text-center px-[25px] py-[5px] rounded-[10px] bg-s-white border border-ijo-500  cursor-pointer ">
-              <p class="font-semibold text-xl text-s-black">EditProfile</p>
+              <p class="font-semibold text-xl text-s-black">Edit Profile</p>
             </div>
           </a>
         </div>

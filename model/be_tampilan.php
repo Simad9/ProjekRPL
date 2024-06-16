@@ -3,7 +3,10 @@
 date_default_timezone_set('Asia/Jakarta');
 
 // Waktu sekarang
-$waktu_sekarang = date("H:i:s");
+$waktu_sekarang_versi_lama = date("H:i:s");
+
+// Waktu sesuai design
+$waktu_sekarang = date("H:i");
 
 // Tanggal sekarang
 $tanggal_sekarang = date("d M Y");
@@ -25,4 +28,19 @@ function noHpWa($noHp)
   }
 
   echo $noHp;
+}
+
+// tampilan tnaggal
+function tampilanTanggal($tanggal)
+{
+  $tanggal_waktu_unix = strtotime($tanggal);
+  $tanggal_format = date("d/m/Y", $tanggal_waktu_unix);
+  echo $tanggal_format;
+}
+
+// ubah format jam
+function ubahFormatJam($jam)
+{
+  $jam = date("H:i", strtotime($jam));
+  echo $jam;
 }

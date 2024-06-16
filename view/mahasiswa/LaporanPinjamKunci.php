@@ -4,6 +4,10 @@ require '../../model/be_main.php';
 $query = "SELECT * FROM kunci";
 $hasil = mysqli_query($koneksi, $query);
 
+$queryLap = "SELECT * FROM lap_pinjamKunci
+INNER JOIN kunci ON lap_pinjamKunci.id_kunci = kunci.id_kunci";
+$hasilLap = mysqli_query($koneksi, $queryLap);
+
 if (isset($_POST["submit"])) {
   $input = ["nama", "nohp", "jurusan", "kunci"];
   foreach ($input as $i) {
@@ -21,6 +25,11 @@ if (isset($_GET["status"])) {
       echo '<script>
       alert("Pinjam Kunci Gagal");
       </script>';
+      break;
+    case "sudahAda":
+      echo '<script>
+          alert("Kunci sudah di pinjam");
+          </script>';
       break;
     case "kosong":
       echo '<script>
@@ -40,8 +49,8 @@ if (isset($_GET["status"])) {
   <title>Pinjam Kunci</title>
 </head>
 
-<body>
-  <section class="flex flex-col gap-[10px]">
+<body class=" md:w-5/12 md:m-auto border border-s-black border-e-black">
+  <section class="flex flex-col gap-[10px] h-screen">
     <?php judulPath("Pinjam Kunci", "./LaporanKunci.php") ?>
 
     <main class="px-[15px] flex flex-col gap-[20px] pb-[15px]">
@@ -75,7 +84,9 @@ if (isset($_GET["status"])) {
                 <option value="0">Pilih Kunci</option>
                 <?php while ($data = mysqli_fetch_assoc($hasil)) : ?>
                   <option value="<?= $data["id_kunci"] ?>"><?= $data["nama"] ?></option>
-                <?php endwhile; ?>
+                <?php
+                endwhile;
+                ?>
 
               </select>
             </div>

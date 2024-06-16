@@ -20,5 +20,5 @@ Note : Mungkin masih terdapat beberapa bug, silahkan beri masukan, melalui fitur
 - [Dokumen catatan disini](https://docs.google.com/document/d/1gBc-LCJoTcv58L0ib1Cn0uibPYS7FiZ71c9rcz9vGyA/edit?usp=sharing)
 - [Desain DFD kami disini](https://app.diagrams.net/#G1oA5Y-PBSBvpwXvnrmiID9ZPkhXoMlNUA#%7B%22pageId%22%3A%227JQi146P6sGG8vP24yxx%22%7D)
 - [Desain Figma disini](https://www.figma.com/design/uDdlw39wa3BSiAgnbyLyjQ/Tempat-Design?node-id=1-2&t=hMsG8Q2MhfNO1fXG-1)
-- [Hosting Gratisan Versi 1](https://tugasrplsecurity.000webhostapp.com/)
+- [Drive kami](https://drive.google.com/drive/u/1/folders/10uX6vO1b7RLHNzk3CdgYcYaSK0eUuxNS)
 - Code Aplikasi ada di repo ini

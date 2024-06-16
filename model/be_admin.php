@@ -16,7 +16,7 @@ function be_hapusLaporanReq()
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: JadwalSecurity.php?status=laporanReqDihapus");
+    header("location: ?status=laporanReqDihapus");
     exit();
   } else {
     header("location: ?status=gagal");

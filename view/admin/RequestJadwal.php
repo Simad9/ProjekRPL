@@ -14,6 +14,17 @@ if (isset($_POST["hapus"])) {
   be_hapusLaporanReq();
 }
 
+// notif
+if (isset($_GET["status"])) {
+  switch ($_GET["status"]) {
+    case "laporanReqDihapus":
+      echo '<script>
+      alert("Laporan Request Berhasil Dihapus");
+      </script>';
+      break;
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +76,8 @@ if (isset($_POST["hapus"])) {
               </div>
               <div class="flex flex-col gap-[5px]">
                 <div class="flex gap-[5px] w-full">
-                  <a href="" class=" w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
+                  <?php $data['nohp'] = ltrim($data['nohp'], '0');  ?>
+                  <a href="https://wa.me/+62<?= $data['nohp'] ?>" target="_blank" class=" w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">
                     Hubungi
                   </a>
                   <a href="EditJadwalRequest.php?id_security=<?= $data['id_security'] ?>&id_securityTeman=<?= $data['id_securityTeman'] ?>" class="w-full px-[10px] py-[5px] rounded-[10px] border border-ijo-500 bg-s-white text-ijo-500 font-semibold text-[15px] text-center">

@@ -102,52 +102,37 @@ function be_fetchNameSecurity()
 }
 
 // Mulai Jaga
-function be_mulaiJaga()
+function be_mulaiJaga($id_security)
 {
   global $koneksi;
 
-  $id_security = $_POST['id_security'];
-  $id_jadwal = $_POST["id_jadwal"];
+  echo $id_security;
 
-  $query = "INSERT INTO `lap_shift` (`id_lapShift`, `id_security`, `id_jadwal`, `id_lapBarang`, `waktuMulai`, `waktuSelesai`, `note`) VALUES (NULL, '$id_security', '$id_jadwal', NULL, current_timestamp(), NULL, NULL);";
+  $query = "UPDATE lap_jaga SET statusJaga = 'berjaga', waktuMulai = current_timestamp(), waktuSelesai = NULL WHERE id_security = $id_security;";
   $hasil = mysqli_query($koneksi, $query);
-  echo "tai";
-  die;
 
   if ($hasil) {
-    header("location: homepage.php?status=berhasil");
+    header("location: SecurityJaga.php");
     exit();
   } else {
-    header("location: homepage.php?status=gagal");
+    header("location: ?status=gagal");
     exit();
   }
 }
 
 // selesai Jaga
-function be_selesaiJaga()
+function be_selesaiJaga($id_security)
 {
   global $koneksi;
 
-  $id_security = $_POST['id_security'];
-  $id_lapBarang = $_POST["id_lapBarang"] ? $_POST["id_lapBarang"] : null;
-  $note = $_POST["note"] ? $_POST["note"] : null;
-
-  $query = "UPDATE lap_shift
-  SET id_lapBarang = '$id_lapBarang', waktuSelesai = current_timestamp(), note = '$note'
-  WHERE id_security = $id_security;";
-  $hasil = mysqli_query($koneksi, $query);
-
-  $id_jadwal = $_POST["id_jadwal"] + 1;
-  $query = "UPDATE jadwal_security 
-  SET id_jadwal = '$id_jadwal' 
-  WHERE id_security = '$id_security';";
+  $query = "UPDATE lap_jaga SET statusJaga = NULL, waktuSelesai = current_timestamp() WHERE id_security = $id_security;";
   $hasil = mysqli_query($koneksi, $query);
 
   if ($hasil) {
-    header("location: homepage.php?status=beresJaga");
+    header("location: SecurityJaga.php");
     exit();
   } else {
-    header("location: homepage.php?status=gagal");
+    header("location: ?status=gagal");
     exit();
   }
 }
@@ -156,7 +141,6 @@ function be_selesaiJaga()
 // Ditolak Perizinan
 function be_tolakKunci()
 {
-
   global $koneksi;
 
   $id_pinjamKunci = $_POST['id_pinjamKunci'];
@@ -186,6 +170,25 @@ function be_terimaKunci()
 
   if ($hasil) {
     header("location: ?status=terimaKunci");
+    exit();
+  } else {
+    header("location: ?status=gagal");
+    exit();
+  }
+}
+
+// Diterima Perizinan
+function be_kunciKembali()
+{
+  global $koneksi;
+
+  $id_pinjamKunci = $_POST['id_pinjamKunci'];
+  $query = "DELETE FROM lap_pinjamKunci
+  WHERE id_pinjamKunci = $id_pinjamKunci;";
+  $hasil = mysqli_query($koneksi, $query);
+
+  if ($hasil) {
+    header("location: ?status=kunciBalik");
     exit();
   } else {
     header("location: ?status=gagal");

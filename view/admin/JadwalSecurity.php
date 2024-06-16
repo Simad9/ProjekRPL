@@ -15,6 +15,11 @@ if (isset($_GET["status"])) {
       alert("Berhasil Update jadwal security");
       </script>';
       break;
+    case "diupdate":
+      echo '<script>
+        alert("Request diterima, ubah jadwal berhasil");
+        </script>';
+      break;
     case "laporanReqDihapus":
       echo '<script>
         alert("Laporan Request Dihapus");
@@ -42,7 +47,7 @@ if (isset($_GET["status"])) {
   <title>Admin</title>
 </head>
 
-<body>
+<body class=" md:w-5/12 md:m-auto border border-s-black border-e-black">
   <section class="flex flex-col gap-[10px]">
     <!-- Judul -->
     <?php judulPolos("Admin") ?>

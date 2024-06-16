@@ -1,90 +1,94 @@
 <?php
 session_start();
 require '../../model/be_main.php';
-
 // Set timezone
 date_default_timezone_set('Asia/Jakarta'); // Ganti dengan timezone server yang sesuai
 
-// Query untuk mengambil data dari tabel lap_jaga, jadwal, dan security
+// Melihat siapa yang berjaga
+$query = "SELECT * FROM lap_jaga
+JOIN jadwal ON lap_jaga.id_jadwal = jadwal.id_jadwal
+JOIN security ON lap_jaga.id_security = security.id_security
+";
+$fetch = mysqli_query($koneksi, $query);
+$jaga = mysqli_fetch_assoc($fetch);
+
+// Ngecek aku jaga gak
 $id_security = $_SESSION['id_security'];
 $query = "SELECT * FROM lap_jaga
-INNER JOIN jadwal ON lap_jaga.id_jadwal = jadwal.id_jadwal
-INNER JOIN security ON lap_jaga.id_security = security.id_security";
+JOIN jadwal ON lap_jaga.id_jadwal = jadwal.id_jadwal
+JOIN security ON lap_jaga.id_security = security.id_security
+WHERE lap_jaga.id_security = $id_security;
+";
 $fetch = mysqli_query($koneksi, $query);
+$data = mysqli_fetch_assoc($fetch);
 
-$jamSekarang = date("H:i:s");
-$bisaJaga = false;
-$penjagaSekarang = [];
-$jadwalUser = [];
+// var_dump($data);
 
-// Mengulang setiap baris dari hasil query
-while ($data = mysqli_fetch_assoc($fetch)) {
-  $jamMulai = date("H:i:s", strtotime($data['jamMulai']));
-  $jamAkhir = date("H:i:s", strtotime($data['jamAkhir']));
+$current_time = new DateTime();
+$waktu_mulai = new DateTime($jaga['jamMulai']);
+$waktu_selesai = new DateTime($jaga['jamAkhir']);
 
-  // Menentukan siapa yang berjaga saat ini
-  if ($jamMulai < $jamAkhir) {
-    // Shift tidak melintasi tengah malam
-    if ($jamSekarang >= $jamMulai && $jamSekarang <= $jamAkhir) {
-      $penjagaSekarang[] = [
-        'nama' => $data['nama'],
-        'jamMulai' => $data['jamMulai'],
-        'jamAkhir' => $data['jamAkhir']
-      ];
-      if ($data['id_security'] == $id_security) {
-        $bisaJaga = true;
+// print_r($current_time = new DateTime());
+// echo "<br>";
+// print_r($waktu_mulai = new DateTime($jaga['jamMulai']));
+// echo "<br>";
+// print_r($waktu_selesai = new DateTime($jaga['jamAkhir']));
+// echo "<br>";
+
+
+$belumJaga = false;
+$berjaga = "";
+
+// echo $id_security;
+// echo "<br>";
+// echo $jaga['id_security'];
+
+if ($waktu_mulai < $waktu_selesai) {
+  if ($current_time >= $waktu_mulai && $current_time <= $waktu_selesai) {
+
+    // $belumJaga = false;
+    if ($jaga['id_security'] == $id_security) {
+      $berjaga = "ready";
+
+      if ($current_time < $waktu_selesai) {
+        $berjaga = 'selesai';
       }
+    } else {
+      $belumJaga = true;
     }
-  } else {
-    // Shift melintasi tengah malam
-    if ($jamSekarang >= $jamMulai || $jamSekarang <= $jamAkhir) {
-      $penjagaSekarang[] = [
-        'nama' => $data['nama'],
-        'jamMulai' => $data['jamMulai'],
-        'jamAkhir' => $data['jamAkhir']
-      ];
-      if ($data['id_security'] == $id_security) {
-        $bisaJaga = true;
-      }
-    }
-  }
-
-  // Menyimpan jadwal user yang sedang login
-  if ($data['id_security'] == $id_security) {
-    $jadwalUser[] = [
-      'jamMulai' => $data['jamMulai'],
-      'jamAkhir' => $data['jamAkhir']
-    ];
-  }
-}
-
-// Menampilkan hasil
-echo "Penjaga saat ini:<br>";
-if (!empty($penjagaSekarang)) {
-  foreach ($penjagaSekarang as $penjaga) {
-    echo $penjaga['nama'] . " (Mulai: " . $penjaga['jamMulai'] . " - Akhir: " . $penjaga['jamAkhir'] . ")<br>";
   }
 } else {
-  echo "Tidak ada yang berjaga saat ini.<br>";
-}
+  // Shift melintasi tengah malam
+  if ($current_time >= $waktu_mulai || $current_time <= $waktu_selesai) {
 
-if ($bisaJaga) {
-  echo "Anda sedang berjaga.<br>";
-} else {
-  echo "Anda tidak sedang berjaga.<br>";
-  if (!empty($jadwalUser)) {
-    echo "Jadwal Anda:<br>";
-    foreach ($jadwalUser as $jadwal) {
-      echo "Mulai: " . $jadwal['jamMulai'] . " - Akhir: " . $jadwal['jamAkhir'] . "<br>";
+    // $belumJaga = false;
+    if ($jaga['id_security'] == $id_security) {
+      $berjaga = "ready";
+
+      if ($current_time < $waktu_selesai) {
+        $berjaga = 'selesai';
+      }
+    } else {
+      $belumJaga = true;
     }
-  } else {
-    echo "Tidak ada jadwal untuk Anda.<br>";
   }
 }
+
+
+// mulai jaga
+if (isset($_POST["jaga"])) {
+  be_mulaiJaga($id_security);
+} else if (isset($_POST["selesai"])) {
+  be_selesaiJaga($id_security);
+}
+
+// apakah lagi jaga atau tidak
+if ($data['statusJaga'] == 'berjaga') {
+  $berjaga = "sedang";
+}
+
+
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,8 +98,8 @@ if ($bisaJaga) {
   <title>Security</title>
 </head>
 
-<body>
-  <section class="flex flex-col gap-[10px]">
+<body class=" md:w-5/12 md:m-auto border border-s-black border-e-black">
+  <section class="flex flex-col gap-[10px] h-screen">
     <?php judulPolos("Security") ?>
 
     <main class="px-[15px] flex flex-col gap-[20px] pb-[15px]">
@@ -107,33 +111,42 @@ if ($bisaJaga) {
             <h1 class="text-t-black font-semibold text-[15px]">Yang Berjaga</h1>
             <h1 class="text-t-black font-semibold text-[10px]"><?= tampilanTanggal($tanggal_sekarang) ?></h1>
           </div>
+
+          <!-- Yang berjaga -->
           <div class="text-center">
-            <?php
-            if (!empty($penjagaSekarang)) {
-              foreach ($penjagaSekarang as $penjaga) {
-                // echo $penjaga['nama'] . " (Mulai: " . $penjaga['jamMulai'] . " - Akhir: " . $penjaga['jamAkhir'] . ")<br>";
-            ?>
-                <h1 class="text-t-black font-bold text-[20px]"><?= $penjaga['nama']  ?></h1>
-                <h2 class="text-t-black font-medium text-[20px]"><?= ubahFormatJam($penjaga['jamMulai']) ?> s/d <?= ubahFormatJam($penjaga['jamAkhir']) ?></h2>
-            <?php
-              }
-            }
-            ?>
+            <h1 class="text-t-black font-bold text-[20px]"><?= $jaga['nama']  ?></h1>
+            <h2 class="text-t-black font-medium text-[20px]"><?= ubahFormatJam($jaga['jamMulai']) ?> s/d <?= ubahFormatJam($jaga['jamAkhir']) ?></h2>
           </div>
         </div>
 
-        <?php if ($bisaJaga) : ?>
-          <button class="w-full px-[25px] py-[5px] rounded-[10px] bg-ijo-500 hover:bg-ijo-400 cursor-pointer ">
-            <p class="font-semibold text-xl text-s-white">Mulai Berjaga</p>
-          </button>
-        <?php elseif ($bisaJaga == 'berjaga') : ?>
-          <button class="w-full px-[25px] py-[5px] rounded-[10px] bg-ijo-500 hover:bg-ijo-400 cursor-pointer ">
-            <p class="font-semibold text-xl text-s-white">Sedang Berjaga</p>
+        <!-- Button untuk memulai -->
+
+
+        <?php
+        if ($belumJaga) : ?>
+          <button class="w-full px-[25px] py-[5px] rounded-[10px] bg-s-grey" disabled>
+            <p class="font-semibold text-xl text-s-white">Tidak Jaga</p>
           </button>
         <?php else : ?>
-          <button class="w-full px-[25px] py-[5px] rounded-[10px] bg-s-grey cursor-none">
-            <p class="font-semibold text-xl text-s-white">Tidak Berjaga</p>
-          </button>
+          <?php if ($berjaga == "ready") : ?>
+
+            <form action="" method="post">
+              <input type="hidden" name="$id_security" value="<?= $id_security ?>">
+              <button type="submit" name="jaga" class="w-full px-[25px] py-[5px] rounded-[10px] bg-ijo-500 hover:bg-ijo-400 cursor-pointer ">
+                <p class="font-semibold text-xl text-s-white">Mulai Berjaga</p>
+              </button>
+            </form>
+
+          <?php elseif ($berjaga == "sedang") : ?>
+            <button class="w-full px-[25px] py-[5px] rounded-[10px]  bg-s-grey" disabled>
+              <p class="font-semibold text-xl text-s-white">Sedang Berjaga</p>
+            </button>
+          <?php elseif ($berjaga == "selesai") : ?>
+            <button class="w-full px-[25px] py-[5px] rounded-[10px] bg-ijo-500 hover:bg-ijo-400 cursor-pointer ">
+              <p class="font-semibold text-xl text-s-white">Selesai Berjaga</p>
+            </button>
+          <?php endif; ?>
+
         <?php endif; ?>
 
       </div>

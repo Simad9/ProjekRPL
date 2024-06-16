@@ -14,11 +14,10 @@ $hasil = mysqli_query($koneksi, $query);
   <title>Pelaporan Barang</title>
 </head>
 
-<body>
-  <section class="flex flex-col gap-[10px]">
+<body class=" md:w-5/12 md:m-auto border border-s-black border-e-black">
+  <section class="flex flex-col gap-[10px] h-screen ">
     <?php judulPath("Pelaporan Barang", "../../index.php") ?>
-
-    <main class="px-[15px] flex flex-col gap-[20px]">
+    <main class="px-[15px] flex flex-col gap-[20px] bg-white">
       <div class="flex flex-col gap-[5px]">
         <h1 class="text-t-black font-semibold text-[18px]">Fitur Kami</h1>
         <section class="flex gap-[5px]">

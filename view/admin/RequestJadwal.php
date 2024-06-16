@@ -24,8 +24,8 @@ if (isset($_POST["hapus"])) {
   <title>Request Jadwal</title>
 </head>
 
-<body>
-  <section class="flex flex-col gap-[10px]">
+<body class=" md:w-5/12 md:m-auto border border-s-black border-e-black">
+  <section class="flex flex-col gap-[10px] h-screen">
     <!-- Judul -->
     <?php judulPath("Request Jadwal", "./JadwalSecurity.php") ?>
 

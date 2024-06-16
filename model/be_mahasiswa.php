@@ -6,6 +6,17 @@ function pinjamKunci()
   $nama = $_POST["nama"];
   $jurusan = $_POST["jurusan"];
   $nohp = $_POST["nohp"];
+  $kunci = $_POST["kunci"];
+
+  $query = "SELECT * FROM lap_pinjamKunci
+  INNER JOIN kunci ON lap_pinjamKunci.id_kunci = kunci.id_kunci";
+  $result = mysqli_query($koneksi, $query);
+  while ($kunci1 = mysqli_fetch_assoc($result)) {
+    if ($kunci1['id_kunci'] == $kunci) {
+      header("Location: laporanPinjamKunci.php?status=sudahAda");
+      exit();
+    }
+  }
 
   // Masuk Ke DB mahasiswa
   $query = "INSERT INTO mahasiswa (nama, jurusan, nohp) VALUES ('$nama', '$jurusan', '$nohp')";
@@ -13,7 +24,7 @@ function pinjamKunci()
 
   // Ambil ID Terakhir
   $id = mysqli_insert_id($koneksi);
-  $kunci = $_POST["kunci"];
+
 
   // Masuk Ke DB lap_pinjamkunci
   $query = "INSERT INTO lap_pinjamkunci (id_mhs, id_kunci) VALUES ('$id', '$kunci')";
@@ -21,7 +32,7 @@ function pinjamKunci()
 
   // Cek apakah berhasil
   if ($hasil) {
-    header("Location: laporanTerkirim.php");
+    header("Location: LaporanKunciTerkirim.php?id_mhs=$id&id_kunci=$kunci");
     exit;
   } else {
     header("Location: laporanPinjamKunci.php?status=gagal");
